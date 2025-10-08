@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Comprehensive English learning platform with classes from beginner to advanced levels">
+  <title>EnglishPro - Complete English Learning</title>
+  <style>
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+
+
+
+
+
+  h1 {
+    font-size: 2.3rem;
+    margin-bottom: 35px;
+    color: #ff6f00;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+    text-shadow: 0 3px 15px rgba(255, 111, 0, 0.4);
+  }
+
+  /* School Cards */
+  .schools-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    width: 100%;
+    max-width: 1250px;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .school-card {
+    position: relative;
+    height: 200px;
+    border-radius: 18px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .school-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(255,111,0,0.4);
+  }
+
+  .school-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+    transition: 0.4s ease;
+  }
+
+  .school-card:hover .school-bg {
+    transform: scale(1.08);
+    filter: brightness(0.75);
+  }
+
+  .school-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2));
+    color: #fff;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .school-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #ffb347;
+    margin-bottom: 8px;
+  }
+
+  .learners-count {
+    font-size: 0.95rem;
+    color: #f1f1f1;
+  }
+
+  /* Teachers Section */
+  .teachers-section {
+    display: none;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 40px;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .teachers-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+
+  .teachers-header h2 {
+    color: #ff6f00;
+    font-weight: 700;
+    font-size: 1.6rem;
+  }
+
+  .back-btn {
+    background: #ff6f00;
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+  }
+
+  .back-btn:hover {
+    background: #ff8f00;
+    box-shadow: 0 4px 10px rgba(255,111,0,0.4);
+  }
+
+  .teachers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+  }
+
+  .teacher-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    padding: 20px 25px;
+    text-align: left;
+    border-left: 4px solid #ff6f00;
+    transition: all 0.4s ease;
+  }
+
+  .teacher-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(255,111,0,0.25);
+    background: #fff9f3;
+  }
+
+  .teacher-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ff6f00;
+    margin-bottom: 10px;
+  }
+
+  .teacher-info {
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.6;
+  }
+
+  .performance-bar {
+    height: 8px;
+    width: 100%;
+    background: #eee;
+    border-radius: 6px;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+
+  .performance-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6f00, #ffb347);
+    width: 0%;
+    transition: width 0.6s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.7rem; }
+    .teacher-card { padding: 18px; }
+    .school-card { height: 160px; }
+  }
+
+
+    body {
+     
+      overflow-x: hidden;
+    }
+
+ 
+header {
+  width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 1.5rem;
+      background: rgb(237, 234, 234);
+      color: var(--white);
+      position: sticky;
+      top: 0;
+      margin-top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: red;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    nav {
+      align-items: center;
+    }
+
+    nav a {
+      margin-left: 50px;
+      text-decoration: none;
+      color: var(--white);
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      opacity: 0.9;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--white);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: var(--white);
+      margin: 4px 0;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: var(--primary);
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        padding: 1rem 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+      }
+
+      nav a {
+        margin: 0.8rem 0;
+        padding: 0.5rem;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+   
+    
+
+ /* Default header style (desktop) */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #fff;
+  position: relative;
+}
+
+header .logo {
+  font-size: 24px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+header nav {
+  display: flex;
+  gap: 20px;
+}
+
+header nav a.btn {
+  padding: 6px 12px;
+  border: 1px solid #000;
+  border-radius: 4px;
+}
+
+/* Hamburger default hidden on desktop */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #000;
+  border-radius: 2px;
+}
+
+/* Media Query for small screens (mobile) */
+@media only screen and (max-width: 768px) {
+  header nav {
+    display: none; /* hide nav links */
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 200px;
+  }
+
+  header nav a {
+    margin: 10px 0;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  /* Optional: show nav when active class is added */
+  header nav.active {
+    display: flex;
+  }
+}
+
+
+    
+
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+ 
+      
+  <header>
+    <a href="#" class="logo" id="homeLink">
+      
+    <i class="fa-solid fa-graduation-cap" style="color: #000000;"></i>&nbsp;<b>S</b>pell<b>X</b>
+    </a>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+   <nav id="nav-links">
+      <a href="parcelo.html" class="nav-home" id="navHome" style="color: #000000;"><i class="fas fa-home" style="color: red;"></i> Home</a>
+      <a href="file:///C:/Users/gandh/OneDrive/Desktop/app/example.html#" id="navTutors" style="color: #000000;"><i class="fas fa-chalkboard-teacher" style="color: red;"></i> Tutors</a>
+      <a href="new.html" id="navClasses" style="color: #000000;"><i class="fas fa-book" style="color: red;"></i> Teachers</a>
+      <a href="#" id="navContact" style="color: #000000;"><i class="fas fa-envelope" style="color: red;"></i> Contact</a>
+      <a href="parcelo.html" class="btn" id="navSignIn" style="color: #000000;"><i class="fas fa-sign-in-alt" style="color: red;"></i> Sign In</a>
+    </nav>
+  </header>
+
+  <h1>SpellX - Tutors Portal</h1>
+
+<!-- Schools Section -->
+<div class="schools-container" id="schoolsContainer"></div>
+
+<!-- Teachers Section -->
+<div class="teachers-section" id="teachersSection">
+  <div class="teachers-header">
+    <h2 id="selectedSchool"></h2>
+    <button class="back-btn" onclick="showSchools()">← Back</button>
+  </div>
+  <div class="teachers-grid" id="teachersGrid"></div>
+</div>
+
+<script>
+  function showAnswers() {
+        document.querySelector('.answers-section').style.display = 'block';  // Show answers section
+    }
+
+    
+    // DOM Elements
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    const classMenu = document.getElementById('classMenu');
+    const contentTitle = document.getElementById('contentTitle');
+    const contentDescription = document.getElementById('contentDescription');
+    const lessonContent = document.getElementById('lessonContent');
+    const mainContent = document.getElementById('mainContent');
+
+    // Navigation elements
+    const navHome = document.getElementById('navHome');
+    const navTutors = document.getElementById('navTutors');
+    const navClasses = document.getElementById('navClasses');
+    const navContact = document.getElementById('navContact');
+    const navSignIn = document.getElementById('navSignIn');
+    const homeLink = document.getElementById('homeLink');
+
+    // Mobile menu toggle
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('#nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+  const schools = [
+    { name: "Sarvepalli Vidya Niketan High School", learners: 450, img: "https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=1000&q=80" },
+    { name: "Raman Vidya Vihar", learners: 380, img: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1000&q=80" },
+    { name: "Narayana High School", learners: 520, img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=80" },
+    { name: "Chaitanya High School", learners: 610, img: "https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=1000&q=80" },
+    { name: "Bright Future School", learners: 480, img: "https://images.unsplash.com/photo-1580584128400-7c1c1f89cdd7?auto=format&fit=crop&w=1000&q=80" },
+    { name: "Elite Global Academy", learners: 560, img: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1000&q=80" },
+    { name: "Mount Carmel High", learners: 430, img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=80" },
+    { name: "Silver Oak School", learners: 395, img: "https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=1000&q=80" },
+    { name: "Royal Heritage School", learners: 620, img: "https://images.unsplash.com/photo-1581092334409-1f31c6d2dcf5?auto=format&fit=crop&w=1000&q=80" },
+    { name: "Dream Valley School", learners: 570, img: "https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=1000&q=80" },
+    { name: "Vision International", learners: 500, img: "https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=1000&q=80" },
+    { name: "Crescent Public School", learners: 460, img: "https://images.unsplash.com/photo-1558024920-b4e26ab9f6b1?auto=format&fit=crop&w=1000&q=80" }
+  ];
+
+  const teachersData = [
+    { name: "Mr. Ramesh Kumar", classes: ["1", "3", "4"], performance: 87, students: 120 },
+    { name: "Ms. Priya Singh", classes: ["5", "6"], performance: 92, students: 98 },
+    { name: "Mr. John Mathew", classes: ["7", "8"], performance: 85, students: 110 },
+    { name: "Mrs. Anjali Das", classes: ["2", "3", "5"], performance: 90, students: 104 },
+    { name: "Mr. Rajesh Verma", classes: ["9", "10"], performance: 95, students: 80 },
+    { name: "Ms. Sneha Reddy", classes: ["6", "7"], performance: 89, students: 102 }
+  ];
+
+  const schoolsContainer = document.getElementById("schoolsContainer");
+  const teachersSection = document.getElementById("teachersSection");
+  const teachersGrid = document.getElementById("teachersGrid");
+  const selectedSchool = document.getElementById("selectedSchool");
+
+  // Load schools dynamically
+  schools.forEach((school) => {
+    const card = document.createElement("div");
+    card.classList.add("school-card");
+    card.innerHTML = `
+      <img src="${school.img}" alt="${school.name}" class="school-bg">
+      <div class="school-overlay">
+        <div class="school-name">${school.name}</div>
+        <div class="learners-count">Total Learners: ${school.learners}</div>
+      </div>
+    `;
+    card.addEventListener("click", () => showTeachers(school.name));
+    schoolsContainer.appendChild(card);
+  });
+
+  function showTeachers(schoolName) {
+    schoolsContainer.style.display = "none";
+    teachersSection.style.display = "block";
+    selectedSchool.textContent = `${schoolName} - Teachers`;
+
+    teachersGrid.innerHTML = "";
+    teachersData.forEach(teacher => {
+      const tCard = document.createElement("div");
+      tCard.classList.add("teacher-card");
+      tCard.innerHTML = `
+        <div class="teacher-name">${teacher.name}</div>
+        <div class="teacher-info">
+          <strong>Classes:</strong> ${teacher.classes.join(", ")}<br>
+          <strong>Total Students:</strong> ${teacher.students}<br>
+          <strong>Performance:</strong> ${teacher.performance}%
+          <div class="performance-bar"><div class="performance-fill" style="width:${teacher.performance}%;"></div></div>
+        </div>
+      `;
+      teachersGrid.appendChild(tCard);
+    });
+  }
+
+  function showSchools() {
+    teachersSection.style.display = "none";
+    schoolsContainer.style.display = "grid";
+  }
+</script>
+  </body>
+  </html>
