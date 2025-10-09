@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Recorder</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 350px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    #startButton {
+      background-color: #28a745;
+      color: white;
+    }
+    #stopButton {
+      background-color: #dc3545;
+      color: white;
+    }
+    #recordingsList {
+      margin-top: 20px;
+      list-style: none;
+      padding: 0;
+    }
+    #recordingsList li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #e9ecef;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    #recordingsList li audio {
+      margin-right: 10px;
+    }
+    #recordingsList li a {
+      text-decoration: none;
+      background-color: #007bff;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 3px;
+    }
+
+    /* Recording status animation */
+    #status {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #dc3545;
+      font-size: 18px;
+      min-height: 24px;
+    }
+
+    .dots::after {
+      content: '';
+      animation: dots 1.5s steps(3, end) infinite;
+    }
+
+    @keyframes dots {
+      0% { content: ''; }
+      33% { content: '.'; }
+      66% { content: '..'; }
+      100% { content: '...'; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎙️ Record & Complete Your Homework !!!</h1>
+    <button id="startButton">Start Recording</button>
+    <button id="stopButton" disabled>Stop Recording</button>
+    <div id="status"></div>
+    <ul id="recordingsList"></ul>
+  </div>
+
+  <script>
+    let mediaRecorder;
+    let audioChunks = [];
+    let stream;
+    const startButton = document.getElementById('startButton');
+    const stopButton = document.getElementById('stopButton');
+    const recordingsList = document.getElementById('recordingsList');
+    const status = document.getElementById('status');
+
+    startButton.addEventListener('click', async () => {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+        audioChunks = [];
+
+        mediaRecorder.addEventListener('dataavailable', event => {
+          audioChunks.push(event.data);
+        });
+
+        mediaRecorder.addEventListener('stop', () => {
+          const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+          const audioUrl = URL.createObjectURL(audioBlob);
+
+          const listItem = document.createElement('li');
+          const audio = document.createElement('audio');
+          const downloadLink = document.createElement('a');
+
+          audio.controls = true;
+          audio.src = audioUrl;
+          downloadLink.href = audioUrl;
+          downloadLink.download = `recording-${Date.now()}.webm`;
+          downloadLink.textContent = 'Download';
+
+          listItem.appendChild(audio);
+          listItem.appendChild(downloadLink);
+          recordingsList.appendChild(listItem);
+        });
+
+        mediaRecorder.start();
+        startButton.disabled = true;
+        stopButton.disabled = false;
+
+        // Show animated dots
+        status.textContent = 'Recording';
+        status.classList.add('dots');
+
+      } catch (err) {
+        console.error('Error accessing microphone:', err);
+        alert('Could not access your microphone. Please ensure permissions are granted.');
+      }
+    });
+
+    stopButton.addEventListener('click', () => {
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+        stream.getTracks().forEach(track => track.stop());
+        startButton.disabled = false;
+        stopButton.disabled = true;
+
+        // Stop dots animation
+        status.classList.remove('dots');
+        status.textContent = 'Recording stopped ✅';
+      }
+    });
+  </script>
+</body>
+</html>

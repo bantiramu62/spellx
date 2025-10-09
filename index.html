@@ -1220,7 +1220,35 @@ p {
     height: auto;
   }
 }
-</style>
+ /* Default style for large screens */
+  .responsive-img {
+    max-width: 70%;
+    height: 300px;
+    border-radius: 8px;
+  }
+
+  /* 📱 Mobile devices (screen width ≤ 600px) */
+  @media (max-width: 600px) {
+    .responsive-img {
+      max-width: 90%;         /* Make image wider */
+      height: auto;           /* Let height adjust automatically */
+      border-radius: 6px;     /* Slightly reduce border radius */
+    }
+
+    .example-image {
+      margin-top: 5px;        /* Reduce top margin */
+      text-align: center;     /* Keep centered */
+    }
+  }
+
+  /* 📲 For very small screens (≤ 400px) */
+  @media (max-width: 400px) {
+    .responsive-img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
 
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -1360,7 +1388,8 @@ function showAnswers() {
     });
 
     // Comprehensive class data with topics, detailed content, and quizzes
-    const classData = {
+    const classData =
+     {
       '1': {
         title: 'Class 1 English',
         description: 'Foundational English for young beginners (Age 6-7)',
@@ -1445,9 +1474,7 @@ function showAnswers() {
     <img src="vowels.png" alt="Alphabet Chart" style="max-width:50%; height:auto; border-radius:8px;">
   </div>
   <p>Vowels and consonants are the two main categories of sounds in the English language. A vowel sound is produced without any obstruction in the vocal tract, while consonants involve some form of blockage or restriction in the airflow.</p>
-  <div class="example-image" style="text-align: center; margin-top: 10px;">
-    <img src="upper.png" alt="Alphabet Chart" style="max-width:70%; height:300px; border-radius:8px;">
-  </div>
+ 
   <!-- Vowels Section -->
   <div class="example-box">
     <h3><i class="fas fa-volume-up"></i> Vowels</h3>
@@ -1594,9 +1621,12 @@ function showAnswers() {
   <a href="https://forms.gle/z8PiU7VnPjEf7snZ9" 
    style="display: block; width: 200px; margin: 0 auto; padding: 20px; font-size: 24px; font-weight: bold; text-align: center; color: white; background: linear-gradient(135deg,#ff4b2b,#ff416c); border-radius: 12px; text-decoration: none; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
    Take Quiz
-</a>
-
-  
+</a></br>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+   
             `,
            
           },
@@ -13201,6 +13231,11 @@ Questions:
     </table>
   </div>
 </div>
+
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
 
@@ -13255,6 +13290,10 @@ Questions:
       </tbody>
     </table>
   </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
 </div>
              `
           },
@@ -13314,6 +13353,10 @@ Questions:
     </table>
   </div>
 </div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
   `
 },
 
@@ -13371,7 +13414,10 @@ Questions:
     </table>
   </div>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
   `
 },
 
@@ -13426,7 +13472,10 @@ Questions:
     </table>
   </div>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
   `
 },
 
@@ -13481,7 +13530,10 @@ Questions:
     </table>
   </div>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
   `
 },
 
@@ -13537,7 +13589,10 @@ Questions:
     </table>
   </div>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
   `
 },
 
@@ -13593,7 +13648,10 @@ Questions:
     </table>
   </div>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
 
   `
 },
@@ -13649,7 +13707,10 @@ Questions:
     </table>
   </div>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
   `
 },
  {
@@ -13704,7 +13765,10 @@ Questions:
     </table>
   </div>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
   `
 },
  {
@@ -13759,7 +13823,10 @@ Questions:
     </table>
   </div>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
   `
 },
  {
@@ -13814,7 +13881,10 @@ Questions:
     </table>
   </div>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
   `
 },
  {
@@ -13869,7 +13939,10 @@ Questions:
     </table>
   </div>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
   `
 },
  {
@@ -15030,6 +15103,100 @@ Questions:
         studentBtn.classList.remove('active');
       }
     }
+     const recordButton = document.getElementById('recordButton');
+        const stopButton = document.getElementById('stopButton');
+        const uploadButton = document.getElementById('uploadButton');
+        const audioPlayback = document.getElementById('audioPlayback');
+        const statusDisplay = document.getElementById('status');
+        const audioDataInput = document.getElementById('audioData');
+
+        let mediaRecorder;
+        let audioChunks = [];
+        let stream;
+
+        // Function to update the audio player visibility
+        const showAudioPlayer = (show) => {
+            audioPlayback.style.display = show ? 'block' : 'none';
+        };
+
+        recordButton.onclick = async () => {
+            try {
+                // 1. Request microphone access
+                stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+                showAudioPlayer(false); // Hide playback during new recording
+                
+                mediaRecorder.ondataavailable = event => audioChunks.push(event.data);
+
+                mediaRecorder.onstop = () => {
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    audioPlayback.src = URL.createObjectURL(audioBlob);
+                    showAudioPlayer(true); // Show playback when recording stops
+                    
+                    convertBlobToBase64(audioBlob); 
+
+                    recordButton.disabled = false;
+                    uploadButton.disabled = false;
+                    statusDisplay.textContent = '✅ Recording finished. Preview and Upload.';
+                    statusDisplay.style.backgroundColor = '#d4edda'; // Green status background
+                    statusDisplay.style.color = '#155724';
+                };
+
+                // 2. Start Recording
+                mediaRecorder.start(); 
+                
+                // 3. Update UI
+                recordButton.disabled = true;
+                stopButton.disabled = false;
+                uploadButton.disabled = true;
+                statusDisplay.textContent = '🔴 Recording... Read the content now!';
+                statusDisplay.style.backgroundColor = '#f8d7da'; // Red status background
+                statusDisplay.style.color = '#721c24';
+            } catch (err) {
+                statusDisplay.textContent = '❌ Error: Could not access microphone. Check permissions.';
+                statusDisplay.style.backgroundColor = '#f8d7da'; 
+                statusDisplay.style.color = '#721c24';
+            }
+        };
+
+        stopButton.onclick = () => {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+                stream.getTracks().forEach(track => track.stop()); // Stop mic usage
+                stopButton.disabled = true;
+            }
+        };
+
+        // Helper: Convert Blob to Base64 (Data URI) for POSTing
+        function convertBlobToBase64(blob) {
+            const reader = new FileReader();
+            reader.onloadend = function() { audioDataInput.value = reader.result; };
+            reader.readAsDataURL(blob);
+        }
+
+        // --- UPLOAD SIMULATION ---
+        uploadButton.onclick = () => {
+            if (audioDataInput.value) {
+                statusDisplay.textContent = '⏳ Uploading... Sending data to server.';
+                statusDisplay.style.backgroundColor = '#cce5ff'; // Blue status background
+                statusDisplay.style.color = '#004085';
+                uploadButton.disabled = true;
+
+                // *REPLACE THIS with your actual server fetch/XHR call*
+                // Example: Send audioDataInput.value to your server endpoint
+                
+                // SIMULATION:
+                setTimeout(() => {
+                    statusDisplay.textContent = '✅ Upload successful! Your reading is submitted for review.';
+                    statusDisplay.style.backgroundColor = '#d4edda';
+                    statusDisplay.style.color = '#155724';
+                }, 1500);
+
+            } else {
+                statusDisplay.textContent = 'No recording found to upload.';
+            }
+        };
   </script>
 </body>
 </html>
