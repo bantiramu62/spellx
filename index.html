@@ -15924,6 +15924,19 @@ Questions:
         let audioChunks = [];
         let stream;
 
+        loginForm.addEventListener('submit', (e) => {
+  e.preventDefault(); // Stop reload
+  alert("Login successful!");
+  closePopup();
+});
+
+signupForm.addEventListener('submit', (e) => {
+  e.preventDefault(); // Stop reload
+  alert("Registration successful!");
+  closePopup();
+});
+
+
         // Function to update the audio player visibility
         const showAudioPlayer = (show) => {
             audioPlayback.style.display = show ? 'block' : 'none';
