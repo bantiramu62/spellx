@@ -1391,6 +1391,8 @@ p {
       <a href="#" class="nav-home" id="navHome" style="color: #000000;"><i class="fas fa-home" style="color: red;"></i> Home</a>
       <a href="example.html" id="navTutors" style="color: #000000;"><i class="fas fa-chalkboard-teacher" style="color: red;"></i> Tutors</a>
       <a href="new.html" id="navClasses" style="color: #000000;"><i class="fas fa-book" style="color: red;"></i> Teachers</a>
+            <a href="studentd.html" id="navClasses" style="color: #000000;"><i class="fas fa-book" style="color: red;"></i> Student</a>
+
       <a href="#" id="navContact" style="color: #000000;"><i class="fas fa-envelope" style="color: red;"></i> Contact</a>
       <a href="#" class="btn" id="navSignIn" style="color: #000000;"><i class="fas fa-sign-in-alt" style="color: red;"></i> Sign In</a>
     </nav>
@@ -15924,18 +15926,7 @@ Questions:
         let audioChunks = [];
         let stream;
 
-        loginForm.addEventListener('submit', (e) => {
-  e.preventDefault(); // Stop reload
-  alert("Login successful!");
-  closePopup();
-});
-
-signupForm.addEventListener('submit', (e) => {
-  e.preventDefault(); // Stop reload
-  alert("Registration successful!");
-  closePopup();
-});
-
+        
 
         // Function to update the audio player visibility
         const showAudioPlayer = (show) => {

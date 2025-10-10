@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Dashboard · English Grammar</title>
+  <style>
+    /* --- Theme variables (match teacher dashboard theme) --- */
+    :root{
+      --bg:#0f1724; /* dark navy */
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#ff7a18; /* orange accent */
+      --accent-2:#ffb86b;
+      --glass: rgba(255,255,255,0.03);
+      --success:#10b981;
+      --danger:#ef4444;
+      --text:#e6eef8;
+      --radius:12px;
+      --shadow: 0 6px 18px rgba(2,6,23,0.7);
+      --maxwidth:1200px;
+    }
+
+    /* --- Reset & base --- */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg), #071024 80%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;align-items:flex-start;justify-content:center;padding:28px;
+    }
+
+    .container{
+      width:100%;max-width:var(--maxwidth);display:grid;grid-template-columns:260px 1fr;gap:20px;
+    }
+
+    /* --- Sidebar --- */
+    .sidebar{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:20px;height:86vh;box-shadow:var(--shadow);position:sticky;top:28px;overflow:auto;
+    }
+
+    .logo{display:flex;gap:12px;align-items:center;margin-bottom:18px}
+    .logo .mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:700;color:#081023}
+    .logo h1{font-size:16px;margin:0}
+    .logo p{margin:0;color:var(--muted);font-size:12px}
+
+    .nav{margin-top:10px}
+    .nav button{display:flex;align-items:center;gap:10px;width:100%;background:transparent;border:0;color:var(--text);padding:12px 10px;border-radius:10px;cursor:pointer;font-size:14px}
+    .nav button:hover{background:rgba(255,255,255,0.02)}
+    .nav button.active{background:linear-gradient(90deg, rgba(255,122,24,0.12), rgba(255,184,107,0.06));border:1px solid rgba(255,122,24,0.08)}
+    .nav .icon{width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;border-radius:4px}
+
+    .sidebar .small{display:block;color:var(--muted);font-size:12px;margin-top:12px}
+
+    /* --- Main content --- */
+    .main{
+      background:transparent;padding:6px 0;min-height:86vh;display:flex;flex-direction:column;gap:16px;position:relative;
+    }
+
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:6px 10px}
+    .search{flex:1;display:flex;align-items:center;gap:10px;background:var(--glass);padding:8px;border-radius:12px;margin-right:16px}
+    .search input{flex:1;background:transparent;border:0;color:var(--text);outline:none}
+
+    .user{display:flex;align-items:center;gap:12px}
+    .avatar{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#142533,#0d334c);display:flex;align-items:center;justify-content:center;font-weight:700}
+
+    /* --- Cards grid --- */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:16px;border-radius:12px;box-shadow:var(--shadow);min-height:92px}
+    .card h3{margin:0;font-size:13px;color:var(--muted)}
+    .card .big{font-size:20px;margin-top:8px}
+
+    .progress{
+      height:10px;background:rgba(255,255,255,0.03);border-radius:999px;width:100%;overflow:hidden;margin-top:12px
+    }
+    .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:999px}
+
+    /* --- Section area --- */
+    .section{background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)}
+    .section h2{margin:0 0 12px 0;display:flex;align-items:center;justify-content:space-between}
+    .list{display:grid;gap:10px}
+    .lesson-row{display:flex;align-items:center;justify-content:space-between;padding:10px;border-radius:10px;background:rgba(255,255,255,0.02)}
+
+    /* --- Sidebar small widgets --- */
+    .small-card{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;font-size:13px}
+
+    /* --- Responsive --- */
+    @media (max-width:1000px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:780px){
+      .container{grid-template-columns:1fr;}
+      .sidebar{position:relative;height:auto}
+      .main{padding-top:0}
+      .grid{grid-template-columns:1fr}
+    }
+
+    /* --- Utilities & small styles --- */
+    .btn{padding:8px 12px;border-radius:10px;border:0;cursor:pointer}
+    .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.02)}
+
+    /* Chat box */
+    .chat-area{display:flex;flex-direction:column;height:320px;border-radius:10px;overflow:hidden}
+    .chat-messages{flex:1;padding:12px;overflow:auto;background:linear-gradient(180deg, rgba(0,0,0,0.02), transparent)}
+    .chat-input{display:flex;padding:8px;background:rgba(0,0,0,0.04);gap:8px}
+    .msg{max-width:70%;padding:8px 10px;border-radius:8px;margin-bottom:8px}
+    .msg.you{background:rgba(16,185,129,0.12);align-self:flex-end}
+    .msg.other{background:rgba(255,255,255,0.03);align-self:flex-start}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="mark">EG</div>
+        <div>
+          <h1>English Grammar</h1>
+          <p>Student Dashboard</p>
+        </div>
+
+    </div>
+
+      <div class="nav" id="nav">
+        <button data-section="home" class="active"><span class="icon">🏠</span> Home</button>
+        <button data-section="courses"><span class="icon">📚</span> Courses</button>
+        <button data-section="lessons"><span class="icon">🎧</span> Lessons</button>
+        <button data-section="assignments"><span class="icon">📝</span> Assignments</button>
+        <button data-section="tests"><span class="icon">⏱️</span> Tests & Quizzes</button>
+        <button data-section="attendance"><span class="icon">📌</span> Attendance</button>
+        <button data-section="chat"><span class="icon">💬</span> Chat</button>
+        <button data-section="profile"><span class="icon">👤</span> Profile</button>
+        <button data-section="reports"><span class="icon">📈</span> Reports</button>
+        <button data-section="gamification"><span class="icon">🏆</span> Gamification</button>
+      </div>
+
+      <div class="small" style="margin-top:14px">Class: <strong>8A</strong></div>
+
+      <div style="margin-top:14px;display:grid;gap:10px">
+        <div class="small-card">Next test: <strong>Unit Test - 12 Oct</strong></div>
+        <div class="small-card">Points: <strong id="points">120</strong></div>
+      </div>
+
+      <div style="margin-top:14px;font-size:12px;color:var(--muted)">Made with ❤️ for schools. Version 1.0</div>
+
+    </aside>
+
+    <main class="main">
+
+      <div class="topbar">
+        <div style="display:flex;align-items:center;flex:1;gap:12px">
+          <div class="search"><span>🔎</span><input id="searchInput" placeholder="Search lessons, courses, assignments..."/></div>
+          <div class="tag">Enrolled: 3 courses</div>
+        </div>
+
+        <div class="user">
+          <div style="text-align:right;margin-right:8px"><div style="font-size:13px">Hello, <strong id="studentName">Gandhi</strong></div><div style="font-size:12px;color:var(--muted)">Grade 8</div></div>
+          <div class="avatar">GR</div>
+        </div>
+      </div>
+
+      <!-- Home Section -->
+      <div id="home" class="section" data-visible>
+        <h2>Overview <div style="font-size:13px;color:var(--muted)">Quick snapshot</div></h2>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Courses</h3>
+            <div class="big">3</div>
+            <div class="progress"><i style="width:68%"></i></div>
+            <div style="margin-top:8px;font-size:12px;color:var(--muted)">Overall progress</div>
+          </div>
+
+          <div class="card">
+            <h3>Completed Lessons</h3>
+            <div class="big">56</div>
+            <div style="margin-top:8px;color:var(--muted);font-size:13px">Keep going — you're doing great!</div>
+          </div>
+
+          <div class="card">
+            <h3>Pending Assignments</h3>
+            <div class="big">2</div>
+            <div style="margin-top:8px;color:var(--muted);font-size:13px">Due in 3 days</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:16px">
+          <div class="section">
+            <h2>Recent Lessons <span style="font-size:13px;color:var(--muted)">Continue where you left</span></h2>
+            <div class="list" id="recentList">
+              <!-- JS will populate -->
+            </div>
+          </div>
+
+          <div class="section">
+            <h2>Upcoming <span style="font-size:13px;color:var(--muted)">Tests & Deadlines</span></h2>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div class="small-card">Unit Test — 12 Oct <div style="font-size:12px;color:var(--muted)">2 days left</div></div>
+              <div class="small-card">Assignment: Tenses worksheet <div style="font-size:12px;color:var(--muted)">Due 13 Oct</div></div>
+              <div class="small-card">Quiz: Verb forms <div style="font-size:12px;color:var(--muted)">Scheduled 15 Oct</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Courses Section -->
+      <div id="courses" class="section" style="display:none">
+        <h2>Courses</h2>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <!-- Course card -->
+          <div class="card" style="min-width:220px;flex:1">
+            <h3>English Grammar — Grade 8</h3>
+            <div style="margin-top:8px;color:var(--muted)">Teacher: Ms. Priya</div>
+            <div class="progress" style="margin-top:12px"><i style="width:72%"></i></div>
+            <div style="margin-top:12px;display:flex;gap:8px"><button class="btn" onclick="openCourse('English Grammar')">Open</button><button class="btn btn-outline">Syllabus</button></div>
+          </div>
+
+          <div class="card" style="min-width:220px;flex:1">
+            <h3>Spoken English — Conversational</h3>
+            <div style="margin-top:8px;color:var(--muted)">Teacher: Mr. Ramesh</div>
+            <div class="progress" style="margin-top:12px"><i style="width:48%"></i></div>
+            <div style="margin-top:12px;display:flex;gap:8px"><button class="btn">Open</button><button class="btn btn-outline">Syllabus</button></div>
+          </div>
+
+          <div class="card" style="min-width:220px;flex:1">
+            <h3>English Writing — Fundamentals</h3>
+            <div style="margin-top:8px;color:var(--muted)">Teacher: Ms. Anu</div>
+            <div class="progress" style="margin-top:12px"><i style="width:34%"></i></div>
+            <div style="margin-top:12px;display:flex;gap:8px"><button class="btn">Open</button><button class="btn btn-outline">Syllabus</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lessons Section -->
+      <div id="lessons" class="section" style="display:none">
+        <h2>Lessons</h2>
+        <div class="list" id="lessonsList"></div>
+      </div>
+
+      <!-- Assignments Section -->
+      <div id="assignments" class="section" style="display:none">
+        <h2>Assignments</h2>
+        <div class="list" id="assignmentsList"></div>
+      </div>
+
+      <!-- Tests Section -->
+      <div id="tests" class="section" style="display:none">
+        <h2>Tests & Quizzes</h2>
+        <div class="list" id="testsList"></div>
+      </div>
+
+      <!-- Attendance -->
+      <div id="attendance" class="section" style="display:none">
+        <h2>Attendance</h2>
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="flex:1">
+            <div class="card">
+              <h3>Attendance Rate</h3>
+              <div class="big">92%</div>
+              <div style="margin-top:8px;color:var(--muted);font-size:13px">Present: 165 / 180</div>
+            </div>
+          </div>
+
+          <div style="width:320px">
+            <div class="section">
+              <h3>Recent Sessions</h3>
+              <div class="list">
+                <div class="lesson-row">10 Oct 2025 — Grammar (Present Tense) <span style="color:var(--success)">Present</span></div>
+                <div class="lesson-row">09 Oct 2025 — Spoken English <span style="color:var(--success)">Present</span></div>
+                <div class="lesson-row">08 Oct 2025 — Writing Practice <span style="color:var(--danger)">Absent</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat -->
+      <div id="chat" class="section" style="display:none">
+        <h2>Chat with Teachers</h2>
+        <div class="chat-area">
+          <div class="chat-messages" id="chatMessages">
+            <div class="msg other">Hello Gandhi — remember to complete your tenses worksheet.</div>
+            <div class="msg you">Okay ma'am, will submit by tomorrow.</div>
+          </div>
+          <div class="chat-input">
+            <input id="chatBox" placeholder="Type a message to your teacher..." style="flex:1;padding:8px;border-radius:8px;border:0;background:transparent;color:var(--text)"/>
+            <button class="btn" onclick="sendMessage()">Send</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile -->
+      <div id="profile" class="section" style="display:none">
+        <h2>Profile</h2>
+        <div style="display:flex;gap:12px;align-items:center">
+          <div class="avatar" style="width:72px;height:72px;font-size:18px">GR</div>
+          <div>
+            <div style="font-size:16px">Gandhi Ram Pinninti</div>
+            <div style="color:var(--muted);font-size:13px">Grade 8 — RGUKT Nuzvid</div>
+            <div style="margin-top:8px;display:flex;gap:8px"><button class="btn">Edit Profile</button><button class="btn btn-outline">Change Password</button></div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <h3 style="margin:0 0 8px 0">Contact</h3>
+          <div style="color:var(--muted)">gandhi@example.com • +91 90000 00000</div>
+        </div>
+      </div>
+
+      <!-- Reports -->
+      <div id="reports" class="section" style="display:none">
+        <h2>Reports</h2>
+        <div style="display:grid;grid-template-columns:1fr 320px;gap:12px">
+          <div class="section">
+            <h3>Performance Summary</h3>
+            <div style="margin-top:8px;color:var(--muted)">Last 30 days</div>
+            <div style="margin-top:12px">
+              <div class="small-card">Avg Score: 78%</div>
+              <div class="small-card" style="margin-top:8px">Best Subject: Writing</div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3>Certificates</h3>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+              <div class="small-card">Course Completion — Grammar Grade 7 <button style="float:right" class="btn btn-outline">Download</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gamification -->
+      <div id="gamification" class="section" style="display:none">
+        <h2>Gamification</h2>
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="flex:1">
+            <div class="card">
+              <h3>Points</h3>
+              <div class="big" id="pointsBig">120</div>
+              <div style="margin-top:8px;color:var(--muted)">Earn points by completing lessons & quizzes</div>
+            </div>
+          </div>
+
+          <div style="width:320px">
+            <div class="section">
+              <h3>Badges</h3>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+                <div class="tag">Quick Learner</div>
+                <div class="tag">Attendance Star</div>
+                <div class="tag">Homework Hero</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    /* --- Sample data and client-side logic --- */
+    const data = {
+      studentName: 'Gandhi',
+      points: 120,
+      recentLessons:[
+        {title:'Present Tense — Video', progress:40, time:'10 min'},
+        {title:'Tenses Worksheet', progress:100, time:'20 min'},
+        {title:'Listening Practice — Pronunciation', progress:15, time:'8 min'}
+      ],
+      lessons:[
+        {title:'Simple Present', duration:'12 min', completed:true},
+        {title:'Present Continuous', duration:'10 min', completed:false},
+        {title:'Past Tense', duration:'15 min', completed:false},
+        {title:'Future Tense', duration:'14 min', completed:false}
+      ],
+      assignments:[
+        {title:'Tenses Worksheet', due:'2025-10-13', status:'pending'},
+        {title:'Writing Practice', due:'2025-10-20', status:'submitted'}
+      ],
+      tests:[
+        {title:'Unit Test', date:'2025-10-12', status:'upcoming'},
+        {title:'Quiz — Verbs', date:'2025-10-15', status:'scheduled'}
+      ]
+    }
+
+    // Initialize UI
+    document.getElementById('studentName').innerText = data.studentName;
+    document.getElementById('points').innerText = data.points;
+    document.getElementById('pointsBig').innerText = data.points;
+
+    const recentList = document.getElementById('recentList');
+    data.recentLessons.forEach(l=>{
+      const el = document.createElement('div');el.className='lesson-row';
+      el.innerHTML = `<div style="display:flex;gap:10px;align-items:center"><div style="width:8px;height:8px;border-radius:50%;background:linear-gradient(90deg,var(--accent),var(--accent-2))"></div><div><strong>${l.title}</strong><div style=\"font-size:12px;color:var(--muted)\">${l.time}</div></div></div><div>${l.progress}%</div>`
+      recentList.appendChild(el);
+    })
+
+    const lessonsList = document.getElementById('lessonsList');
+    data.lessons.forEach(ls=>{
+      const r = document.createElement('div');r.className='lesson-row';
+      r.innerHTML = `<div><strong>${ls.title}</strong><div style=\"font-size:12px;color:var(--muted)\">${ls.duration}</div></div><div><button class=\"btn\" onclick=\"markComplete(this)\">${ls.completed? 'Completed':'Start'}</button></div>`
+      lessonsList.appendChild(r);
+    })
+
+    const assignmentsList = document.getElementById('assignmentsList');
+    data.assignments.forEach(a=>{
+      const r = document.createElement('div');r.className='lesson-row';
+      r.innerHTML = `<div><strong>${a.title}</strong><div style=\"font-size:12px;color:var(--muted)\">Due: ${a.due}</div></div><div><span style=\"font-size:13px;color:${a.status==='pending'? 'var(--accent)':'var(--muted)'}\">${a.status}</span></div>`
+      assignmentsList.appendChild(r);
+    })
+
+    const testsList = document.getElementById('testsList');
+    data.tests.forEach(t=>{
+      const r = document.createElement('div');r.className='lesson-row';
+      r.innerHTML = `<div><strong>${t.title}</strong><div style=\"font-size:12px;color:var(--muted)\">${t.date}</div></div><div><button class=\"btn\">View</button></div>`
+      testsList.appendChild(r);
+    })
+
+    // Navigation
+    document.getElementById('nav').addEventListener('click',e=>{
+      const btn = e.target.closest('button'); if(!btn) return;
+      document.querySelectorAll('#nav button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const section = btn.dataset.section;
+      document.querySelectorAll('main .section').forEach(s=>s.style.display='none');
+      const el = document.getElementById(section);
+      if(el) el.style.display='block';
+    })
+
+    // Simple actions
+    function openCourse(name){
+      alert('Opening course: '+name)
+    }
+    function markComplete(btn){
+      btn.innerText = 'Completed';
+      btn.disabled = true;
+    }
+
+    // Chat
+    function sendMessage(){
+      const v = document.getElementById('chatBox').value.trim(); if(!v) return;
+      const container = document.getElementById('chatMessages');
+      const m = document.createElement('div'); m.className='msg you'; m.innerText=v; container.appendChild(m);
+      document.getElementById('chatBox').value=''; container.scrollTop = container.scrollHeight;
+    }
+
+    // Search
+    document.getElementById('searchInput').addEventListener('keyup', (e)=>{
+      const q = e.target.value.toLowerCase();
+      if(!q){ document.querySelectorAll('.lesson-row').forEach(x=>x.style.display='flex'); return }
+      document.querySelectorAll('.lesson-row').forEach(x=>{
+        x.style.display = x.innerText.toLowerCase().includes(q)? 'flex':'none'
+      })
+    })
+
+  </script>
+</body>
+</html>
