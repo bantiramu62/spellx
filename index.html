@@ -15884,9 +15884,30 @@ Questions:
     const teacherBtn = document.getElementById('teacherBtn');
 
     // Show popup only once when website loads
-    window.addEventListener('load', () => {
-      overlay.classList.add('active');
-    });
+  // Show popup only once per reload
+window.addEventListener('load', () => {
+  if (!sessionStorage.getItem('popupShown')) {
+    overlay.classList.add('active');
+    sessionStorage.setItem('popupShown', 'true');
+  }
+});
+
+// Close popup function
+function closePopup() {
+  overlay.classList.remove('active');
+}
+
+// Handle form submissions
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  closePopup();
+});
+
+signupForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  closePopup();
+});
+
 
     function closePopup() {
       overlay.classList.remove('active');
@@ -16011,6 +16032,8 @@ Questions:
                 statusDisplay.textContent = 'No recording found to upload.';
             }
         };
+
+        
   </script>
 </body>
 </html>

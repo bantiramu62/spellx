@@ -210,6 +210,63 @@
         </div>
       </div>
 
+      <div id="home" class="section" data-visible>
+  <h2>Overview <div style="font-size:13px;color:var(--muted)">Quick snapshot of your activities</div></h2>
+
+  <div class="grid">
+    <!-- Courses -->
+    <div class="card">
+      <h3>Courses</h3>
+      <div class="big" id="overviewCourses">0</div>
+      <div class="progress"><i id="overviewCoursesProgress" style="width:0%"></i></div>
+      <div style="margin-top:8px;font-size:12px;color:var(--muted)">Overall progress</div>
+    </div>
+
+    <!-- Lessons -->
+    <div class="card">
+      <h3>Lessons Completed</h3>
+      <div class="big" id="overviewLessons">0</div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px">Keep going — you're doing great!</div>
+    </div>
+
+    <!-- Assignments -->
+    <div class="card">
+      <h3>Pending Assignments</h3>
+      <div class="big" id="overviewAssignments">0</div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px">Due soon</div>
+    </div>
+
+    <!-- Tests & Quizzes -->
+    <div class="card">
+      <h3>Tests & Quizzes</h3>
+      <div class="big" id="overviewTests">0</div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px">Check your scores & pending quizzes</div>
+    </div>
+
+    <!-- Attendance -->
+    <div class="card">
+      <h3>Attendance</h3>
+      <div class="big" id="overviewAttendance">0%</div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px">Present vs Total</div>
+    </div>
+
+    <!-- Chat -->
+    <div class="card">
+      <h3>Unread Messages</h3>
+      <div class="big" id="overviewChat">0</div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px">Messages from teachers</div>
+    </div>
+
+    <!-- Gamification -->
+    <div class="card">
+      <h3>Points</h3>
+      <div class="big" id="overviewPoints">0</div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px">Earn points for lessons & quizzes</div>
+    </div>
+  </div>
+</div>
+
+
       <!-- Courses Section -->
       <div id="courses" class="section" style="display:none">
         <h2>Courses</h2>
@@ -255,6 +312,24 @@
         <h2>Tests & Quizzes</h2>
         <div class="list" id="testsList"></div>
       </div>
+
+      <div id="tests" class="section" style="display:none">
+  <h2>Tests & Quizzes</h2>
+
+  <!-- Quiz Progress Card -->
+  <div class="small-card" style="margin-bottom:12px">
+    <strong>Quiz Progress:</strong>
+    <div style="display:flex;justify-content:space-between;font-size:12px;margin-top:4px">
+      <span>Total: <span id="totalQuizzes">0</span></span>
+      <span>Completed: <span id="completedQuizzes">0</span></span>
+      <span>Pending: <span id="pendingQuizzes">0</span></span>
+    </div>
+  </div>
+
+  <!-- Quizzes List -->
+  <div class="list" id="testsList"></div>
+</div>
+
 
       <!-- Attendance -->
       <div id="attendance" class="section" style="display:none">
@@ -459,6 +534,95 @@
         x.style.display = x.innerText.toLowerCase().includes(q)? 'flex':'none'
       })
     })
+
+// --- Tests & Quizzes Data ---
+data.tests = [
+  {title:'Unit Test', date:'2025-10-12', status:'completed', score:85},
+  {title:'Quiz — Verbs', date:'2025-10-15', status:'pending', score:null},
+  {title:'Grammar Quiz', date:'2025-10-18', status:'completed', score:92},
+  {title:'Spoken English Test', date:'2025-10-20', status:'pending', score:null},
+  {title:'Tenses Quiz', date:'2025-10-22', status:'pending', score:null}
+];
+
+// --- Render Tests & Quizzes ---
+function renderTests(){
+  const testsList = document.getElementById('testsList');
+  testsList.innerHTML = '';
+
+  let total = data.tests.length;
+  let completed = 0;
+  let pending = 0;
+
+  data.tests.forEach(t => {
+    const r = document.createElement('div');
+    r.className = 'lesson-row';
+
+    let statusDisplay = '';
+    if(t.status === 'completed'){
+      statusDisplay = `<span style="font-size:13px;color:var(--success)">Score: ${t.score}</span>`;
+      completed++;
+    } else if(t.status === 'pending'){
+      statusDisplay = `<span style="font-size:13px;color:var(--accent)">Not done</span>`;
+      pending++;
+    }
+
+    r.innerHTML = `
+      <div>
+        <strong>${t.title}</strong>
+        <div style="font-size:12px;color:var(--muted)">Date: ${t.date}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        ${statusDisplay}
+        <button class="btn" onclick="alert('Viewing ${t.title}')">View</button>
+      </div>
+    `;
+    testsList.appendChild(r);
+  });
+
+  // Update Quiz Progress Card
+  document.getElementById('totalQuizzes').innerText = total;
+  document.getElementById('completedQuizzes').innerText = completed;
+  document.getElementById('pendingQuizzes').innerText = pending;
+}
+
+// Call after page load
+renderTests();
+
+    function renderOverview(){
+  // Courses
+  const totalCourses = data.courses ? data.courses.length : 3;
+  document.getElementById('overviewCourses').innerText = totalCourses;
+  const courseProgress = data.coursesProgress ? data.coursesProgress : 68; // example
+  document.getElementById('overviewCoursesProgress').style.width = courseProgress + '%';
+
+  // Lessons
+  const completedLessons = data.lessons.filter(l => l.completed).length;
+  document.getElementById('overviewLessons').innerText = completedLessons;
+
+  // Assignments
+  const pendingAssignments = data.assignments.filter(a => a.status === 'pending').length;
+  document.getElementById('overviewAssignments').innerText = pendingAssignments;
+
+  // Tests & Quizzes
+  const pendingTests = data.tests.filter(t => t.status === 'pending').length;
+  const completedTests = data.tests.filter(t => t.status === 'completed').length;
+  document.getElementById('overviewTests').innerText = `${completedTests} completed / ${pendingTests} pending`;
+
+  // Attendance
+  const attendanceRate = data.attendanceRate ? data.attendanceRate : 92;
+  document.getElementById('overviewAttendance').innerText = attendanceRate + '%';
+
+  // Chat (example: unread messages)
+  const unreadMessages = data.chatUnread ? data.chatUnread : 1;
+  document.getElementById('overviewChat').innerText = unreadMessages;
+
+  // Gamification Points
+  const points = data.points ? data.points : 120;
+  document.getElementById('overviewPoints').innerText = points;
+}
+
+// Call after page load
+renderOverview();
 
   </script>
 </body>
