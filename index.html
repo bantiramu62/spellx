@@ -1321,11 +1321,190 @@ p {
     padding: 10px;
   }
 }
+/* === Lesson Section Styling === */
+.lesson-section {
+  background: #f9fafc;
+  border-radius: 20px;
+  padding: 25px;
+  margin: 25px auto;
+  max-width: 900px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  font-family: "Poppins", sans-serif;
+  color: #333;
+}
 
+.lesson-section h2 {
+  font-size: 1.8rem;
+  color: #2b4eff;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.lesson-section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* === Example Box === */
+.example-box {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 25px;
+  margin-top: 20px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+  border-left: 5px solid #2b4eff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.example-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.example-box h3 {
+  font-size: 1.3rem;
+  color: #1e40af;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.example-box h3 i {
+  color: #2b4eff;
+}
+
+.example-content {
+  background: #f8faff;
+  border-radius: 12px;
+  padding: 15px 20px;
+  margin-top: 10px;
+  border: 1px solid #e3e8f3;
+}
+
+.example-content h4 {
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+.example-content p {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 12px 15px;
+  margin: 10px 0;
+  line-height: 1.6;
+  border: 1px solid #e0e7ff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.example-content p strong {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.example-content hr {
+  border: none;
+  height: 1px;
+  background: #dbeafe;
+  margin: 25px 0;
+}
+
+  .question-box button {
+    display: block;
+    margin: 5px 0;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  .question-box button:hover {
+    background-color: #e0e0e0;
+  }
+  .question-box button.correct {
+    background-color: #4CAF50;
+    color: white;
+  }
+  .question-box button.wrong {
+    background-color: #f10707;
+    color: white;
+  }
+
+  /* ✅ Responsive Styling */
+  @media (max-width: 768px) {
+    .lesson-section {
+      padding: 15px;
+    }
+
+    .question-box h4 {
+      font-size: 16px;
+    }
+
+    .question-box button {
+      font-size: 15px;
+      padding: 8px 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .lesson-section {
+      padding: 10px;
+    }
+
+    .question-box h4 {
+      font-size: 15px;
+    }
+
+    .question-box button {
+      font-size: 14px;
+      padding: 8px 10px;
+    }
+  }
+.question-box { margin-bottom: 35px; }
+
+
+/* 🧾 Only styles the counter box (won’t touch body) */
+  #visitorCounter {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ffffffcc;
+    backdrop-filter: blur(5px);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 9999;
+  }
+
+  #visitorCounter h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #222;
+  }
+
+  #visitCount {
+    font-size: 1.5rem;
+    color: #007bff;
+    font-weight: bold;
+  }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+
+<!-- 🧮 Live Visitor Counter Widget -->
+<div id="visitorCounter">
+  <h3>👁️ Visitors:</h3>
+  <span id="visitCount">0</span>
+</div>
+
 
   <!-- Navbar -->
   <div class="navbar">
@@ -1692,6 +1871,75 @@ function showAnswers() {
     </div>
   </div>  </div> 
 
+<!-- ===========================
+     📘 Alphabet Practice Quiz
+=========================== -->
+<div class="lesson-section">
+  <h2 style="color:#1e90ff;">Alphabet Practice Questions</h2>
+  <p>Choose the correct answer. If your answer is correct, it will turn <strong style="color:green;">green</strong>. If not, it will turn <strong style="color:red;">red</strong> and show the correct one in green.</p>
+
+  <div id="quizContainer" style="margin-top:20px;">
+    
+    <!-- Question 1 -->
+    <div class="question-box" style="margin-bottom:20px;">
+      <h4>1. How many letters are there in the English Alphabet?</h4>
+      <button onclick="checkAnswer(this, true)">26</button>
+      <button onclick="checkAnswer(this, false)">25</button>
+      <button onclick="checkAnswer(this, false)">24</button>
+      <button onclick="checkAnswer(this, false)">30</button>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question-box" style="margin-bottom:20px;">
+      <h4>2. Which of the following is a vowel?</h4>
+      <button onclick="checkAnswer(this, true)">E</button>
+      <button onclick="checkAnswer(this, false)">T</button>
+      <button onclick="checkAnswer(this, false)">S</button>
+      <button onclick="checkAnswer(this, false)">N</button>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question-box" style="margin-bottom:20px;">
+      <h4>3. Which of these is NOT a vowel?</h4>
+      <button onclick="checkAnswer(this, false)">A</button>
+      <button onclick="checkAnswer(this, false)">O</button>
+      <button onclick="checkAnswer(this, true)">B</button>
+      <button onclick="checkAnswer(this, false)">E</button>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="question-box" style="margin-bottom:20px;">
+      <h4>4. Which letter is silent in the word “knife”?</h4>
+      <button onclick="checkAnswer(this, true)">K</button>
+      <button onclick="checkAnswer(this, false)">N</button>
+      <button onclick="checkAnswer(this, false)">E</button>
+      <button onclick="checkAnswer(this, false)">F</button>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="question-box" style="margin-bottom:20px;">
+      <h4>5. Which of the following letters is least used in English?</h4>
+      <button onclick="checkAnswer(this, false)">E</button>
+      <button onclick="checkAnswer(this, false)">A</button>
+      <button onclick="checkAnswer(this, true)">Z</button>
+      <button onclick="checkAnswer(this, false)">T</button>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="question-box" style="margin-bottom:20px;">
+      <h4>6. What comes just after the letter ‘D’ in alphabetical order?</h4>
+      <button onclick="checkAnswer(this, true)">E</button>
+      <button onclick="checkAnswer(this, false)">C</button>
+      <button onclick="checkAnswer(this, false)">F</button>
+      <button onclick="checkAnswer(this, false)">G</button>
+    </div>
+
+  </div>
+</div>
+
+
+
+
   <a href="https://forms.gle/z8PiU7VnPjEf7snZ9" 
    style="display: block; width: 200px; margin: 0 auto; padding: 20px; font-size: 24px; font-weight: bold; text-align: center; color: white; background: linear-gradient(135deg,#ff4b2b,#ff416c); border-radius: 12px; text-decoration: none; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
    Take Quiz
@@ -1888,12 +2136,99 @@ Vowels are the heart of syllables and are necessary for word formation.
       </ul>
     </div>
   </div>
+<!-- ===========================
+     🎯 Vowels & Consonants Practice Quiz
+=========================== -->
+<div class="lesson-section">
+  <h2 style="color:#1e90ff;">Vowels & Consonants Practice Questions</h2>
+  <p>Choose the correct answer. If your answer is correct, it will turn <strong style="color:green;">green</strong>. If not, it will turn <strong style="color:red;">red</strong> and show the correct one in green.</p>
+
+  <div id="quizContainer" style="margin-top:20px;">
+
+    <!-- Question 1 -->
+    <div class="question-box" style="margin-bottom:20px;">
+      <h4>1. How many vowel letters are there in English?</h4>
+      <button onclick="checkAnswer(this, true)">5</button>
+      <button onclick="checkAnswer(this, false)">6</button>
+      <button onclick="checkAnswer(this, false)">4</button>
+      <button onclick="checkAnswer(this, false)">7</button>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question-box" style="margin-bottom:20px;">
+      <h4>2. Which of the following is NOT a vowel?</h4>
+      <button onclick="checkAnswer(this, false)">A</button>
+      <button onclick="checkAnswer(this, true)">B</button>
+      <button onclick="checkAnswer(this, false)">E</button>
+      <button onclick="checkAnswer(this, false)">I</button>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question-box" style="margin-bottom:20px;">
+      <h4>3. Which of these words contains only consonants?</h4>
+      <button onclick="checkAnswer(this, false)">Dog</button>
+      <button onclick="checkAnswer(this, false)">Cat</button>
+      <button onclick="checkAnswer(this, true)">Rhythm</button>
+      <button onclick="checkAnswer(this, false)">Owl</button>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="question-box" style="margin-bottom:20px;">
+      <h4>4. What type of letter is ‘Y’ in the word “cry”?</h4>
+      <button onclick="checkAnswer(this, true)">Vowel</button>
+      <button onclick="checkAnswer(this, false)">Consonant</button>
+      <button onclick="checkAnswer(this, false)">Silent Letter</button>
+      <button onclick="checkAnswer(this, false)">None</button>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="question-box" style="margin-bottom:20px;">
+      <h4>5. Which group shows only vowels?</h4>
+      <button onclick="checkAnswer(this, false)">A, E, C, D</button>
+      <button onclick="checkAnswer(this, true)">A, E, I, O, U</button>
+      <button onclick="checkAnswer(this, false)">A, B, C, D</button>
+      <button onclick="checkAnswer(this, false)">O, P, Q, R</button>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="question-box" style="margin-bottom:20px;">
+      <h4>6. Which of the following is a consonant digraph?</h4>
+      <button onclick="checkAnswer(this, true)">Sh</button>
+      <button onclick="checkAnswer(this, false)">Ae</button>
+      <button onclick="checkAnswer(this, false)">Ou</button>
+      <button onclick="checkAnswer(this, false)">Ee</button>
+    </div>
+
+    <!-- Question 7 -->
+    <div class="question-box" style="margin-bottom:20px;">
+      <h4>7. Which of these is a voiced consonant sound?</h4>
+      <button onclick="checkAnswer(this, true)">B</button>
+      <button onclick="checkAnswer(this, false)">P</button>
+      <button onclick="checkAnswer(this, false)">T</button>
+      <button onclick="checkAnswer(this, false)">K</button>
+    </div>
+
+    <!-- Question 8 -->
+    <div class="question-box" style="margin-bottom:20px;">
+      <h4>8. Which of these is a voiceless consonant?</h4>
+      <button onclick="checkAnswer(this, false)">M</button>
+      <button onclick="checkAnswer(this, false)">N</button>
+      <button onclick="checkAnswer(this, true)">S</button>
+      <button onclick="checkAnswer(this, false)">V</button>
+    </div>
+
+  </div>
+</div>
+
 <a href="https://forms.gle/z8PiU7VnPjEf7snZ9" 
    style="display: block; width: 200px; margin: 0 auto; padding: 20px; font-size: 24px; font-weight: bold; text-align: center; color: white; background: linear-gradient(135deg,#ff4b2b,#ff416c); border-radius: 12px; text-decoration: none; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
 
@@ -2074,6 +2409,109 @@ Vowels are the heart of syllables and are necessary for word formation.
       </ul>
     </div>
   </div>
+
+  <!-- ===========================
+🎯 Figures of Speech Practice Quiz (Responsive)
+=========================== -->
+<div class="lesson-section">
+  <h2 style="color:#ff4b2b;">Figures of Speech – Practice Questions</h2>
+  <p>Test your understanding! Choose the correct answer for each question.</p>
+
+  <div id="figuresQuiz" style="margin-top:20px;">
+
+    <!-- Question 1 -->
+    <div class="question-box">
+      <h4>1. "He is as brave as a lion." Which figure of speech is used here?</h4>
+      <button onclick="checkAnswer(this, true)">Simile</button>
+      <button onclick="checkAnswer(this, false)">Metaphor</button>
+      <button onclick="checkAnswer(this, false)">Hyperbole</button>
+      <button onclick="checkAnswer(this, false)">Personification</button>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question-box">
+      <h4>2. "Her smile is sunshine." This sentence shows a:</h4>
+      <button onclick="checkAnswer(this, false)">Simile</button>
+      <button onclick="checkAnswer(this, true)">Metaphor</button>
+      <button onclick="checkAnswer(this, false)">Pun</button>
+      <button onclick="checkAnswer(this, false)">Euphemism</button>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question-box">
+      <h4>3. "The leaves danced in the wind." Which figure of speech?</h4>
+      <button onclick="checkAnswer(this, true)">Personification</button>
+      <button onclick="checkAnswer(this, false)">Hyperbole</button>
+      <button onclick="checkAnswer(this, false)">Alliteration</button>
+      <button onclick="checkAnswer(this, false)">Irony</button>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="question-box">
+      <h4>4. "Peter Piper picked a peck of pickled peppers." is an example of:</h4>
+      <button onclick="checkAnswer(this, false)">Assonance</button>
+      <button onclick="checkAnswer(this, false)">Onomatopoeia</button>
+      <button onclick="checkAnswer(this, true)">Alliteration</button>
+      <button onclick="checkAnswer(this, false)">Simile</button>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="question-box">
+      <h4>5. "Boom! went the bomb." Which figure of speech?</h4>
+      <button onclick="checkAnswer(this, true)">Onomatopoeia</button>
+      <button onclick="checkAnswer(this, false)">Hyperbole</button>
+      <button onclick="checkAnswer(this, false)">Irony</button>
+      <button onclick="checkAnswer(this, false)">Oxymoron</button>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="question-box">
+      <h4>6. "I’ve told you a million times!" is an example of:</h4>
+      <button onclick="checkAnswer(this, false)">Metaphor</button>
+      <button onclick="checkAnswer(this, true)">Hyperbole</button>
+      <button onclick="checkAnswer(this, false)">Pun</button>
+      <button onclick="checkAnswer(this, false)">Personification</button>
+    </div>
+
+    <!-- Question 7 -->
+    <div class="question-box">
+      <h4>7. "The pilot is afraid of heights." What figure of speech is this?</h4>
+      <button onclick="checkAnswer(this, false)">Metaphor</button>
+      <button onclick="checkAnswer(this, false)">Paradox</button>
+      <button onclick="checkAnswer(this, true)">Irony</button>
+      <button onclick="checkAnswer(this, false)">Oxymoron</button>
+    </div>
+
+    <!-- Question 8 -->
+    <div class="question-box">
+      <h4>8. "Deafening silence" is an example of:</h4>
+      <button onclick="checkAnswer(this, false)">Irony</button>
+      <button onclick="checkAnswer(this, true)">Oxymoron</button>
+      <button onclick="checkAnswer(this, false)">Metaphor</button>
+      <button onclick="checkAnswer(this, false)">Euphemism</button>
+    </div>
+
+    <!-- Question 9 -->
+    <div class="question-box">
+      <h4>9. "He passed away" instead of "He died" is a:</h4>
+      <button onclick="checkAnswer(this, true)">Euphemism</button>
+      <button onclick="checkAnswer(this, false)">Pun</button>
+      <button onclick="checkAnswer(this, false)">Simile</button>
+      <button onclick="checkAnswer(this, false)">Paradox</button>
+    </div>
+
+    <!-- Question 10 -->
+    <div class="question-box">
+      <h4>10. "Less is more." represents which figure of speech?</h4>
+      <button onclick="checkAnswer(this, false)">Irony</button>
+      <button onclick="checkAnswer(this, false)">Metaphor</button>
+      <button onclick="checkAnswer(this, false)">Simile</button>
+      <button onclick="checkAnswer(this, true)">Paradox</button>
+    </div>
+
+  </div>
+</div>
+
 <a href="https://forms.gle/z8PiU7VnPjEf7snZ9" 
    style="display: block; width: 200px; margin: 0 auto; padding: 20px; font-size: 24px; font-weight: bold; text-align: center; color: white; background: linear-gradient(135deg,#ff4b2b,#ff416c); border-radius: 12px; text-decoration: none; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
    Take Quiz
@@ -2082,7 +2520,10 @@ Vowels are the heart of syllables and are necessary for word formation.
 
   
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -2139,12 +2580,82 @@ Vowels are the heart of syllables and are necessary for word formation.
       </ul>
     </div>
   </div>
+
+  <!-- ===========================
+     📘 Days & Months Practice Quiz
+=========================== -->
+<div class="lesson-section">
+  <h2 style="color:#1e90ff;">Days & Months Practice Questions</h2>
+  <p>Choose the correct answer. If your answer is correct, it will turn <strong style="color:green;">green</strong>. If not, it will turn <strong style="color:red;">red</strong> and show the correct one in green.</p>
+
+  <div id="quizContainer" style="margin-top:20px;">
+    
+    <!-- Question 1 -->
+    <div class="question-box" style="margin-bottom:35px;">
+      <h4>1. How many days are there in a week?</h4>
+      <button onclick="checkAnswer(this, true)">7</button>
+      <button onclick="checkAnswer(this, false)">6</button>
+      <button onclick="checkAnswer(this, false)">8</button>
+      <button onclick="checkAnswer(this, false)">5</button>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question-box" style="margin-bottom:35px;">
+      <h4>2. Which day comes after Monday?</h4>
+      <button onclick="checkAnswer(this, false)">Sunday</button>
+      <button onclick="checkAnswer(this, true)">Tuesday</button>
+      <button onclick="checkAnswer(this, false)">Wednesday</button>
+      <button onclick="checkAnswer(this, false)">Friday</button>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question-box" style="margin-bottom:35px;">
+      <h4>3. How many months are there in a year?</h4>
+      <button onclick="checkAnswer(this, true)">12</button>
+      <button onclick="checkAnswer(this, false)">10</button>
+      <button onclick="checkAnswer(this, false)">11</button>
+      <button onclick="checkAnswer(this, false)">9</button>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="question-box" style="margin-bottom:35px;">
+      <h4>4. Which month has 28 or 29 days?</h4>
+      <button onclick="checkAnswer(this, false)">January</button>
+      <button onclick="checkAnswer(this, true)">February</button>
+      <button onclick="checkAnswer(this, false)">March</button>
+      <button onclick="checkAnswer(this, false)">April</button>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="question-box" style="margin-bottom:35px;">
+      <h4>5. What is the first day of the week?</h4>
+      <button onclick="checkAnswer(this, true)">Sunday</button>
+      <button onclick="checkAnswer(this, false)">Monday</button>
+      <button onclick="checkAnswer(this, false)">Friday</button>
+      <button onclick="checkAnswer(this, false)">Saturday</button>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="question-box" style="margin-bottom:35px;">
+      <h4>6. Which month comes after June?</h4>
+      <button onclick="checkAnswer(this, false)">May</button>
+      <button onclick="checkAnswer(this, true)">July</button>
+      <button onclick="checkAnswer(this, false)">August</button>
+      <button onclick="checkAnswer(this, false)">April</button>
+    </div>
+
+  </div>
+</div>
+
   <a href="https://forms.gle/z8PiU7VnPjEf7snZ9" 
    style="display: block; width: 200px; margin: 0 auto; padding: 20px; font-size: 24px; font-weight: bold; text-align: center; color: white; background: linear-gradient(135deg,#ff4b2b,#ff416c); border-radius: 12px; text-decoration: none; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -2220,7 +2731,10 @@ Vowels are the heart of syllables and are necessary for word formation.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
            {
@@ -2311,7 +2825,10 @@ Vowels are the heart of syllables and are necessary for word formation.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -2402,7 +2919,10 @@ Vowels are the heart of syllables and are necessary for word formation.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
 
@@ -2526,7 +3046,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -2604,6 +3127,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
   `
           },
           {
@@ -2658,7 +3185,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
         ]
@@ -2902,7 +3432,10 @@ B: Yes, we are having a small party with friends and family.
 </a>
 </div>
 
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
 
             `
           },
@@ -2995,7 +3528,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
 
@@ -3068,7 +3604,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
 
@@ -3188,7 +3727,10 @@ B: Yes, we are having a small party with friends and family.
 </a>
 </div>
 
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -3446,7 +3988,10 @@ B: Yes, we are having a small party with friends and family.
    style="display: block; width: 200px; margin: 0 auto; padding: 20px; font-size: 24px; font-weight: bold; text-align: center; color: white; background: linear-gradient(135deg,#ff4b2b,#ff416c); border-radius: 12px; text-decoration: none; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
    Take Quiz
 </a>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
        
@@ -3692,7 +4237,10 @@ B: Yes, we are having a small party with friends and family.
 </a>
 </div>
 
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
 
             `
           },
@@ -3792,7 +4340,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
 
             `
           },
@@ -3892,6 +4443,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
         ]
@@ -3966,7 +4521,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -4029,6 +4587,10 @@ B: Yes, we are having a small party with friends and family.
    style="display: block; width: 200px; margin: 0 auto; padding: 20px; font-size: 24px; font-weight: bold; text-align: center; color: white; background: linear-gradient(135deg,#ff4b2b,#ff416c); border-radius: 12px; text-decoration: none; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
    Take Quiz
 </a>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
 </div>
             `
           },
@@ -4133,7 +4695,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -4270,7 +4835,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -4464,7 +5032,10 @@ B: Yes, we are having a small party with friends and family.
 </a>
   </div>
 
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -4640,7 +5211,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
   </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -4773,7 +5347,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -4921,7 +5498,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -5011,7 +5591,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -5145,7 +5728,10 @@ B: Yes, we are having a small party with friends and family.
 </a>
     </div>
 
-    
+    <div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
 
             `
           },
@@ -5216,7 +5802,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
  
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -5357,7 +5946,10 @@ B: Yes, we are having a small party with friends and family.
    style="display: block; width: 200px; margin: 0 auto; padding: 20px; font-size: 24px; font-weight: bold; text-align: center; color: white; background: linear-gradient(135deg,#ff4b2b,#ff416c); border-radius: 12px; text-decoration: none; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
    Take Quiz
 </a>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -5468,6 +6060,10 @@ B: Yes, we are having a small party with friends and family.
    style="display: block; width: 200px; margin: 0 auto; padding: 20px; font-size: 24px; font-weight: bold; text-align: center; color: white; background: linear-gradient(135deg,#ff4b2b,#ff416c); border-radius: 12px; text-decoration: none; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
    Take Quiz
 </a>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -5757,7 +6353,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
 
 
             `
@@ -5821,7 +6420,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
 
@@ -6156,7 +6758,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
   </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
 
             `
           },
@@ -6707,7 +7312,10 @@ B: Yes, we are having a small party with friends and family.
 </a>
 </div>
 
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
 
             `
           },
@@ -7005,7 +7613,10 @@ B: Yes, we are having a small party with friends and family.
 </a>
   </div>
 
-  
+  <div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -7237,7 +7848,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
   </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
 
             `
           },
@@ -7394,7 +8008,10 @@ B: Yes, we are having a small party with friends and family.
 </a>
   </div>
 
- 
+ <div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
 
             `
           },
@@ -7724,7 +8341,10 @@ B: Yes, we are having a small party with friends and family.
 </a>
   </div>
 
-  
+  <div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -7979,6 +8599,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
   </div>
+  <div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -8114,6 +8738,11 @@ B: Yes, we are having a small party with friends and family.
    style="display: block; width: 200px; margin: 0 auto; padding: 20px; font-size: 24px; font-weight: bold; text-align: center; color: white; background: linear-gradient(135deg,#ff4b2b,#ff416c); border-radius: 12px; text-decoration: none; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
    Take Quiz
 </a>
+</div>
+
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
 </div>
             `
           },
@@ -8293,6 +8922,11 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
+
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
 
@@ -8371,7 +9005,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -8681,7 +9318,10 @@ B: Yes, we are having a small party with friends and family.
 
 </div>
 <!-- Root Words Section Ends Here -->
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -8766,7 +9406,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -8841,7 +9484,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -8920,7 +9566,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -9009,7 +9658,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
         ]
@@ -9224,7 +9876,10 @@ B: Yes, we are having a small party with friends and family.
 </a>
 </div>
 
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -9306,7 +9961,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -9386,7 +10044,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -9483,7 +10144,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -9563,7 +10227,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -9642,7 +10309,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -9723,7 +10393,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -9801,7 +10474,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -9876,7 +10552,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -9950,7 +10629,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -10026,7 +10708,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -10099,7 +10784,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -10174,7 +10862,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -10320,7 +11011,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
         ]
@@ -10525,7 +11219,10 @@ B: Yes, we are having a small party with friends and family.
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -10956,7 +11653,10 @@ with a lot of challenges in her new job.</p>
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
      
 
             `
@@ -11019,7 +11719,10 @@ with a lot of challenges in her new job.</p>
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -11095,7 +11798,10 @@ with a lot of challenges in her new job.</p>
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -11180,7 +11886,10 @@ with a lot of challenges in her new job.</p>
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -11291,7 +12000,10 @@ with a lot of challenges in her new job.</p>
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -11448,7 +12160,10 @@ Gandhi Ram
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
         ]
@@ -11578,7 +12293,10 @@ Gandhi Ram
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -11846,7 +12564,10 @@ Gandhi Ram
 
 <!-- Minimal inline CSS you can copy into your stylesheet to keep spacing consistent -->
 
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -11979,7 +12700,10 @@ a comparative form, so "more" is unnecessary.)</li> </ul> </div>
    Take Quiz
 </a>
   </div></div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -12066,7 +12790,10 @@ Seema Gupta
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -12167,7 +12894,10 @@ Amit
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
         ]
@@ -12320,7 +13050,10 @@ Amit
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -12445,7 +13178,10 @@ Amit
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -12767,7 +13503,10 @@ Anil Kumar
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           }
         ]
@@ -12886,7 +13625,10 @@ Anil Kumar
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -13010,6 +13752,9 @@ Anil Kumar
    style="display: block; width: 200px; margin: 0 auto; padding: 20px; font-size: 24px; font-weight: bold; text-align: center; color: white; background: linear-gradient(135deg,#ff4b2b,#ff416c); border-radius: 12px; text-decoration: none; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
    Take Quiz
 </a>
+</div><div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
 </div>
 
             `
@@ -13140,7 +13885,10 @@ Climate change significantly affects agriculture by altering rainfall patterns, 
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -13238,7 +13986,10 @@ Questions:
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
 
             
@@ -13962,7 +14713,7 @@ Questions:
   `
 },
  {
-  title: 'Colors',
+  title: 'Sports & Games',
   content: `
 <!-- Day 13 – Sports & Games Vocabulary Lesson -->
 <div class="lesson-section">
@@ -14071,11 +14822,14 @@ Questions:
     </table>
   </div>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
   `
 },
  {
-  title: 'Colors',
+  title: 'Body Parts',
   content: `
 <!-- Day 15 – Body Parts Vocabulary Lesson -->
 <div class="lesson-section">
@@ -14126,107 +14880,61 @@ Questions:
     </table>
   </div>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
   `
 },
  {
-  title: 'Colors',
+  title: 'Fruits',
   content: `
+<!-- Day 16 – Fruits Vocabulary Lesson -->
+<div class="lesson-section">
 
+  <h2>Day 16 – Fruits (ఫలాలు)</h2>
+  <p>This lesson covers common fruits in English and Telugu, useful for learning, describing, and communication.</p>
+
+  <div class="vocab-table-container">
+    <table class="vocab-table">
+      <thead>
+        <tr>
+          <th>English Word / Phrase</th>
+          <th>తెలుగు అర్థం (Telugu Meaning)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Apple</td><td>సేపు</td></tr>
+        <tr><td>Banana</td><td>అరటిపండు</td></tr>
+        <tr><td>Mango</td><td>మామిడి</td></tr>
+        <tr><td>Orange</td><td>కింది నారింజ</td></tr>
+        <tr><td>Grapes</td><td>ద్రాక్ష</td></tr>
+        <tr><td>Pineapple</td><td>అనాస</td></tr>
+        <tr><td>Watermelon</td><td>పుచ్చకాయ</td></tr>
+        <tr><td>Papaya</td><td>పపయ</td></tr>
+        <tr><td>Guava</td><td>జామ</td></tr>
+        <tr><td>Strawberry</td><td>స్ట్రాబెర్రీ</td></tr>
+        <tr><td>Lemon</td><td>నిమ్మ</td></tr>
+        <tr><td>Pomegranate</td><td>దానిమ్మ</td></tr>
+        <tr><td>Cherry</td><td>చెర్రీ</td></tr>
+        <tr><td>Kiwi</td><td>కివి</td></tr>
+        <tr><td>Peach</td><td>పీచ్</td></tr>
+        <tr><td>Plum</td><td>ప్లమ్</td></tr>
+        <tr><td>Fig</td><td>అత్తి</td></tr>
+        <tr><td>Jackfruit</td><td>పల్పండు / జాక్పండు</td></tr>
+        <tr><td>Coconut</td><td>కొబ్బరి</td></tr>
+        <tr><td>Muskmelon</td><td>ఖర్బూజ</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
   `
 },
- {
-  title: 'Colors',
-  content: `
-
-  `
-},
- {
-  title: 'Colors',
-  content: `
-
-  `
-},
- {
-  title: 'Colors',
-  content: `
-
-  `
-},
- {
-  title: 'Colors',
-  content: `
-
-  `
-},
- {
-  title: 'Colors',
-  content: `
-
-  `
-},
- {
-  title: 'Colors',
-  content: `
-
-  `
-},
- {
-  title: 'Colors',
-  content: `
-
-  `
-},
- {
-  title: 'Colors',
-  content: `
-
-  `
-},
- {
-  title: 'Colors',
-  content: `
-
-  `
-},
- {
-  title: 'Colors',
-  content: `
-
-  `
-},
- {
-  title: 'Colors',
-  content: `
-
-  `
-},
- {
-  title: 'Colors',
-  content: `
-
-  `
-},
- {
-  title: 'Colors',
-  content: `
-
-  `
-},
- {
-  title: 'Colors',
-  content: `
-
-  `
-},
- {
-  title: 'Colors',
-  content: `
-
-  `
-},
-
-
+ 
           {
   title: 'Occupations and Professions',
   content: `
@@ -14322,6 +15030,11 @@ Questions:
 </a>
 </div>
 
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+
             `
           },
           {
@@ -14403,7 +15116,10 @@ Questions:
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -14482,7 +15198,10 @@ Questions:
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -14561,7 +15280,10 @@ Questions:
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           {
@@ -14775,7 +15497,10 @@ Questions:
    Take Quiz
 </a>
 </div>
-
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
           
@@ -15018,6 +15743,10 @@ Questions:
       </tbody>
     </table>
   </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
 </div>
             `
           },
@@ -15083,7 +15812,68 @@ Questions:
             `
           },
 
-            {
+          
+ {
+            title: 'E Verbs',
+            content: `
+<div class="lesson-section">
+  <h2 class="section-title">English Verbs Starting with 'E' (25 verbs)</h2>
+  <p class="section-intro">
+    Below are 25 commonly used English verbs beginning with the letter <b>E</b> — along with their Base, Past, Past Participle, s/es, and 'ing' forms.
+  </p>
+
+  <div class="table-container">
+    <table class="verb-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Base Form</th>
+          <th>Past Form</th>
+          <th>Past Participle</th>
+          <th>s / es / ies Form</th>
+          <th>'ing' Form</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>earn</td><td>earned</td><td>earned</td><td>earns</td><td>earning</td></tr>
+        <tr><td>2</td><td>eat</td><td>ate</td><td>eaten</td><td>eats</td><td>eating</td></tr>
+        <tr><td>3</td><td>echo</td><td>echoed</td><td>echoed</td><td>echoes</td><td>echoing</td></tr>
+        <tr><td>4</td><td>edit</td><td>edited</td><td>edited</td><td>edits</td><td>editing</td></tr>
+        <tr><td>5</td><td>educate</td><td>educated</td><td>educated</td><td>educates</td><td>educating</td></tr>
+        <tr><td>6</td><td>elaborate</td><td>elaborated</td><td>elaborated</td><td>elaborates</td><td>elaborating</td></tr>
+        <tr><td>7</td><td>elect</td><td>elected</td><td>elected</td><td>elects</td><td>electing</td></tr>
+        <tr><td>8</td><td>embark</td><td>embarked</td><td>embarked</td><td>embarks</td><td>embarking</td></tr>
+        <tr><td>9</td><td>emphasize</td><td>emphasized</td><td>emphasized</td><td>emphasizes</td><td>emphasizing</td></tr>
+        <tr><td>10</td><td>enable</td><td>enabled</td><td>enabled</td><td>enables</td><td>enabling</td></tr>
+        <tr><td>11</td><td>encourage</td><td>encouraged</td><td>encouraged</td><td>encourages</td><td>encouraging</td></tr>
+        <tr><td>12</td><td>end</td><td>ended</td><td>ended</td><td>ends</td><td>ending</td></tr>
+        <tr><td>13</td><td>engage</td><td>engaged</td><td>engaged</td><td>engages</td><td>engaging</td></tr>
+        <tr><td>14</td><td>enjoy</td><td>enjoyed</td><td>enjoyed</td><td>enjoys</td><td>enjoying</td></tr>
+        <tr><td>15</td><td>ensure</td><td>ensured</td><td>ensured</td><td>ensures</td><td>ensuring</td></tr>
+        <tr><td>16</td><td>enter</td><td>entered</td><td>entered</td><td>enters</td><td>entering</td></tr>
+        <tr><td>17</td><td>establish</td><td>established</td><td>established</td><td>establishes</td><td>establishing</td></tr>
+        <tr><td>18</td><td>examine</td><td>examined</td><td>examined</td><td>examines</td><td>examining</td></tr>
+        <tr><td>19</td><td>exist</td><td>existed</td><td>existed</td><td>exists</td><td>existing</td></tr>
+        <tr><td>20</td><td>expand</td><td>expanded</td><td>expanded</td><td>expands</td><td>expanding</td></tr>
+        <tr><td>21</td><td>expect</td><td>expected</td><td>expected</td><td>expects</td><td>expecting</td></tr>
+        <tr><td>22</td><td>explain</td><td>explained</td><td>explained</td><td>explains</td><td>explaining</td></tr>
+        <tr><td>23</td><td>express</td><td>expressed</td><td>expressed</td><td>expresses</td><td>expressing</td></tr>
+        <tr><td>24</td><td>extend</td><td>extended</td><td>extended</td><td>extends</td><td>extending</td></tr>
+        <tr><td>25</td><td>extract</td><td>extracted</td><td>extracted</td><td>extracts</td><td>extracting</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn, Record that as audio !!!
+  <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+
+              `
+          },
+          
+           {
             title: 'Irregular Verbs',
             content: `
              
@@ -15136,9 +15926,6 @@ Questions:
 </div>
             `
           },
-          
-
-          
           
         ]
       },
@@ -15379,6 +16166,10 @@ Questions:
       </tbody>
     </table>
   </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
 </div>
             `
           },
@@ -15547,34 +16338,1803 @@ Questions:
   </div>
 </div>
 
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
 
             `
           },
-          {
-            title: 'Reading Comprehension',
+
+            {
+            title: 'Daily habbits',
             content: `
-              <div class="lesson-section">
-                <h2>Cloze Test</h2>
-                <p>Filling in blanks with appropriate words in passages.</p>
-                
-                <div class="example-box">
-                  <h3><i class="fas fa-tasks"></i> Cloze Test Strategies</h3>
-                  <p>Approaches for solving cloze passages.</p>
-                  <div class="example-content">
-                    <h4>Example Passage:</h4>
-                    <p>"The ___ (1)___ is shining brightly today. Birds are ___ (2)___ in the trees. A gentle ___ (3)___ is blowing."</p>
-                    <p><strong>Answers:</strong></p>
-                    <ol>
-                      <li>sun</li>
-                      <li>singing</li>
-                      <li>breeze</li>
-                    </ol>
-                  </div>
-                </div>
-              </div>
+             <div style="background:#fff; border:3px solid #2b4eff; border-radius:14px; padding:30px 40px; box-shadow:0 6px 18px rgba(0,0,0,0.1); max-width:700px; margin:40px auto; font-family:'Poppins',sans-serif; transition:all 0.3s ease;">
+  
+  <h2 style="color:#2b4eff; font-size:1.8rem; text-align:center; margin-bottom:10px;">
+    Self Introduction – Example Speech
+  </h2>
+  
+  
+ 
+
+  <!-- 🗣️ Speech Box -->
+  <div style="background:#f9faff; padding:20px 25px; border-radius:10px; line-height:1.8; color:#222; font-size:1rem;">
+    <p>Good morning respected teachers and my dear friends!</p>
+    <p>My name is <b>Rahul Reddy</b>.</p>
+    <p>I am <b>14 years old</b>.</p>
+    <p>I am a student of <b>Class 9</b> at <b>Sarvepalli Vidya Niketan</b> in <b>Vizag</b>.</p>
+    <p>I live with my father, mother, and one younger sister.</p>
+    <p>I enjoy playing cricket, reading storybooks, and drawing.</p>
+    <p>My favorite subject is <b>Science</b> because I love conducting experiments.</p>
+    <p>I am hardworking, confident, and curious.</p>
+    <p>I dream of becoming an <b>Engineer</b> in the future.</p>
+  </div>
+  <div>
+   <!-- 🎧 Audio Section -->
+  <div style="background:#f9faff; border-left:5px solid #2b4eff; padding:15px 20px; border-radius:10px; margin-bottom:25px; margin-top:25px;">
+    <p style="margin:0 0 10px 0; font-weight:600; color:#222;">🎧 Listen to the Speech:</p>
+<audio id="speechAudio" controls preload="auto" style="width:100%; border-radius:6px;">
+      <source src="introaudio.wav" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  </div>
+</div>
+
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          }, 
+          {
+            title: '1.Family Conversation',
+            content: `
+             <div class="lesson-section">
+  <h2>Family Conversation</h2>
+  <p>Basic English conversation questions and answers about family life.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-comments"></i> Sample Conversation</h3>
+    <p>Learn how to talk about your family using simple English sentences.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>How many people are there in your family?</strong><br>
+      There are 5 people in my family: my father, mother, brother, sister, and me.</p>
+
+      <p><strong>Does your family live in a house or an apartment?</strong><br>
+      We live in a house in the countryside.</p>
+
+      <p><strong>What does your father do?</strong><br>
+      My father is a doctor. He works at the local hospital.</p>
+
+      <p><strong>How old is your mother?</strong><br>
+      She is 40 years old, 1 year younger than my father.</p>
+
+      <p><strong>Do you have any siblings? What’s his/her name?</strong><br>
+      Yes, I do. I have 1 elder brother, David, and 1 younger sister, Mary.</p>
+
+      <p><strong>Are you the oldest amongst your brothers and sisters?</strong><br>
+      No, I’m not. I’m the second child in my family.</p>
+
+      <p><strong>What does your mother/father like?</strong><br>
+      My father likes playing football and my mother likes cooking.</p>
+
+      <p><strong>Do your parents let you stay out late?</strong><br>
+      Of course not. They always ask me to get home before 10 pm each night.</p>
+
+      <p><strong>Do you stay with your parents?</strong><br>
+      Right now, no, but I used to.</p>
+
+      <p><strong>Does your family usually have dinner together?</strong><br>
+      Yes, we do. My mom always prepares delicious meals for us.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>What does your brother do?</strong><br>
+      He’s a college student. He studies engineering.</p>
+
+      <p><strong>What does your sister like to do in her free time?</strong><br>
+      She likes reading storybooks and watching cartoons.</p>
+
+      <p><strong>Who is the funniest person in your family?</strong><br>
+      My brother is the funniest. He always makes everyone laugh.</p>
+
+      <p><strong>Who helps your mother with household chores?</strong><br>
+      We all do. I usually wash the dishes, and my sister helps in the kitchen.</p>
+
+      <p><strong>Do you go on trips with your family?</strong><br>
+      Yes, we go on a trip every summer. Last year we visited Ooty.</p>
+
+      <p><strong>What do you and your family do on weekends?</strong><br>
+      We usually go shopping or watch a movie together.</p>
+
+      <p><strong>Who wakes up first in your family?</strong><br>
+      My father wakes up first. He goes for a morning walk every day.</p>
+
+      <p><strong>How do you celebrate family birthdays?</strong><br>
+      We decorate the house, cut a cake, and have dinner together.</p>
+
+      <p><strong>Do you have any pets in your family?</strong><br>
+      Yes, we have a dog named Bruno. He’s very friendly.</p>
+
+      <p><strong>What do you like most about your family?</strong><br>
+      I love that we always support and care for each other.</p>
+    </div>
+
+     <!-- 🎧 Audio Section -->
+  <div style="background:#f9faff; border-left:5px solid #2b4eff; padding:15px 20px; border-radius:10px; margin-bottom:25px; margin-top:25px;">
+    <p style="margin:0 0 10px 0; font-weight:600; color:#222;">🎧 Listen to the Speech:</p>
+<audio id="speechAudio" controls preload="auto" style="width:100%; border-radius:6px;">
+      <source src="convo1.wav" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
             `
           },
-          {
+
+           {
+            title: '2.Restaurent Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Restaurant Conversation</h2>
+  <p>Basic English conversation questions and answers used while visiting a restaurant.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-utensils"></i> Sample Conversation</h3>
+    <p>Learn how to order food, ask for the menu, and talk politely in a restaurant.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Good evening! Do you have a table for two?</strong><br>
+      Yes, of course. Please follow me. Here’s your table.</p>
+
+      <p><strong>Can I see the menu, please?</strong><br>
+      Sure, here’s the menu. Would you like something to drink first?</p>
+
+      <p><strong>Yes, I’ll have a glass of orange juice, please.</strong><br>
+      Great choice! I’ll bring it right away.</p>
+
+      <p><strong>What’s today’s special?</strong><br>
+      Today’s special is grilled chicken with mixed vegetables.</p>
+
+      <p><strong>Sounds good. I’ll take one grilled chicken and a bowl of soup.</strong><br>
+      Sure. Would you like any bread or salad with that?</p>
+
+      <p><strong>Yes, please add a small salad.</strong><br>
+      Alright. Your order will be ready in about 10 minutes.</p>
+
+      <p><strong>Thank you. The place looks nice and clean.</strong><br>
+      Thank you! We’re glad you like it.</p>
+
+      <p><strong>Excuse me, can I get some water, please?</strong><br>
+      Of course. Here you go.</p>
+
+      <p><strong>Can I have the bill, please?</strong><br>
+      Yes, here’s your bill. Would you like to pay by cash or card?</p>
+
+      <p><strong>I’ll pay by card. Thank you for the service.</strong><br>
+      You’re welcome! Have a great day and please visit again.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>Do you have any vegetarian dishes?</strong><br>
+      Yes, we have vegetable curry, paneer tikka, and mixed salad.</p>
+
+      <p><strong>Can you make it less spicy, please?</strong><br>
+      Sure! We’ll prepare it mild for you.</p>
+
+      <p><strong>What desserts do you have?</strong><br>
+      We have ice cream, chocolate cake, and fruit salad.</p>
+
+      <p><strong>Could you recommend something popular?</strong><br>
+      Our most popular dish is the butter chicken with naan.</p>
+
+      <p><strong>Is service charge included in the bill?</strong><br>
+      Yes, a 10% service charge is already included.</p>
+
+      <p><strong>Can I take the leftovers home?</strong><br>
+      Of course! I’ll pack it for you.</p>
+
+      <p><strong>Do you offer online delivery?</strong><br>
+      Yes, we do! You can order through our website or app.</p>
+
+      <p><strong>Is there free Wi-Fi available?</strong><br>
+      Yes, please use the password written on your table card.</p>
+
+      <p><strong>Can you bring me an extra spoon, please?</strong><br>
+      Certainly! Here you go.</p>
+
+      <p><strong>Everything was delicious. Compliments to the chef!</strong><br>
+      Thank you so much! We’ll pass your message to the chef.</p>
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+           {
+            title: '3.Books Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Books Conversation</h2>
+  <p>Basic English conversation questions and answers about reading and books.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-book"></i> Sample Conversation</h3>
+    <p>Learn how to talk about your favorite books and reading habits in simple English.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Do you like reading books?</strong><br>
+      Yes, I love reading books. It’s one of my favorite hobbies.</p>
+
+      <p><strong>What kind of books do you like to read?</strong><br>
+      I like storybooks, adventure novels, and self-improvement books.</p>
+
+      <p><strong>Who is your favorite author?</strong><br>
+      My favorite author is Chetan Bhagat. I enjoy his simple and meaningful stories.</p>
+
+      <p><strong>What’s the best book you’ve ever read?</strong><br>
+      The best book I’ve read is “Wings of Fire” by Dr. A.P.J. Abdul Kalam.</p>
+
+      <p><strong>How often do you read books?</strong><br>
+      I try to read every day, at least for 30 minutes before bed.</p>
+
+      <p><strong>Where do you usually read?</strong><br>
+      I usually read in my room or sometimes in the library.</p>
+
+      <p><strong>Do you prefer e-books or printed books?</strong><br>
+      I prefer printed books because I like the feel of turning pages.</p>
+
+      <p><strong>Why do you like reading books?</strong><br>
+      Because books help me learn new things and improve my imagination.</p>
+
+      <p><strong>Do you share books with your friends?</strong><br>
+      Yes, I often exchange books with my friends after finishing them.</p>
+
+      <p><strong>Have you ever read a book twice?</strong><br>
+      Yes, I’ve read “Harry Potter” twice. It’s really interesting!</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>When did you start reading books?</strong><br>
+      I started reading when I was in class 3. My teacher encouraged me.</p>
+
+      <p><strong>Do you think reading is important?</strong><br>
+      Yes, it helps us gain knowledge and improve our language skills.</p>
+
+      <p><strong>Do you borrow books from the library?</strong><br>
+      Yes, I visit the library every weekend to borrow new books.</p>
+
+      <p><strong>Have you ever written a story or poem?</strong><br>
+      Yes, I once wrote a short story about friendship in school.</p>
+
+      <p><strong>Do you read books in English or your native language?</strong><br>
+      I read both, but I try to read more English books to improve my vocabulary.</p>
+
+      <p><strong>Who introduced you to reading?</strong><br>
+      My mother. She used to read bedtime stories to me when I was a kid.</p>
+
+      <p><strong>How do you choose a book to read?</strong><br>
+      I usually read the summary or get recommendations from friends.</p>
+
+      <p><strong>Do you prefer short stories or long novels?</strong><br>
+      I like both, but short stories are easier to finish quickly.</p>
+
+      <p><strong>What book are you reading right now?</strong><br>
+      I’m reading “The Power of Your Subconscious Mind.”</p>
+
+      <p><strong>Would you like to write your own book someday?</strong><br>
+      Yes, I’d love to write a motivational book in the future.</p>
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+           {
+            title: '4.Travel Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Travel Conversation</h2>
+  <p>Basic English conversation questions and answers used while traveling or at the airport, bus station, or train station.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-plane-departure"></i> Sample Conversation</h3>
+    <p>Learn how to ask for directions, book tickets, and communicate politely while traveling.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Good morning! Where can I buy a ticket to Delhi?</strong><br>
+      Good morning! You can buy it at the ticket counter over there.</p>
+
+      <p><strong>Thank you. How much does a one-way ticket cost?</strong><br>
+      A one-way ticket to Delhi costs ₹1200.</p>
+
+      <p><strong>Is it an express train?</strong><br>
+      Yes, it’s an express train and takes about 6 hours.</p>
+
+      <p><strong>What time does the train leave?</strong><br>
+      It leaves at 9:30 AM from Platform No. 4.</p>
+
+      <p><strong>Can I get a window seat, please?</strong><br>
+      Sure, I’ll check the availability. Yes, you’ve got a window seat!</p>
+
+      <p><strong>Thank you. How early should I be at the platform?</strong><br>
+      Please be there at least 15 minutes before departure.</p>
+
+      <p><strong>Excuse me, where is Platform No. 4?</strong><br>
+      It’s on your left side, right after the waiting hall.</p>
+
+      <p><strong>Can I get something to eat nearby?</strong><br>
+      Yes, there’s a food stall near the entrance. They have snacks and drinks.</p>
+
+      <p><strong>Is there Wi-Fi on the train?</strong><br>
+      Yes, free Wi-Fi is available once the train starts moving.</p>
+
+      <p><strong>Thank you for your help!</strong><br>
+      You’re welcome! Have a safe journey.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>How long does the flight take to Mumbai?</strong><br>
+      It takes about 1 hour and 30 minutes.</p>
+
+      <p><strong>Where can I check in for my flight?</strong><br>
+      You can check in at Counter No. 12.</p>
+
+      <p><strong>Can I carry this bag as hand luggage?</strong><br>
+      Yes, as long as it weighs under 7 kilograms.</p>
+
+      <p><strong>Could you please tell me where the boarding gate is?</strong><br>
+      Sure, it’s Gate No. 6, straight ahead.</p>
+
+      <p><strong>Do I need to fill out any form before boarding?</strong><br>
+      Yes, please fill out this declaration form at the counter.</p>
+
+      <p><strong>What time will we reach Goa?</strong><br>
+      The flight is scheduled to arrive at 4:15 PM.</p>
+
+      <p><strong>Is there any hotel nearby for a short stay?</strong><br>
+      Yes, there’s a budget hotel just across the street from the station.</p>
+
+      <p><strong>Can I book a taxi from here?</strong><br>
+      Yes, you can book one at the taxi stand outside or use an app.</p>
+
+      <p><strong>My luggage is missing. Whom should I contact?</strong><br>
+      Please contact the lost and found office near Gate No. 2.</p>
+
+      <p><strong>Thank you for assisting me. You’ve been very helpful!</strong><br>
+      My pleasure! Have a pleasant trip.</p>
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+           {
+            title: '5.Accident Conversation',
+            content: `
+            <div class="lesson-section">
+  <h2>Accident Conversation</h2>
+  <p>Basic English conversation questions and answers used when talking about or reporting an accident.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-ambulance"></i> Sample Conversation</h3>
+    <p>Learn how to ask for help, describe what happened, and communicate calmly during an accident situation.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Oh no! There’s been an accident. Is everyone okay?</strong><br>
+      I’m not sure. That car hit the bike very hard. Let’s check.</p>
+
+      <p><strong>Someone call an ambulance quickly!</strong><br>
+      Yes, I’ve already called. The ambulance is on the way.</p>
+
+      <p><strong>Is the injured person conscious?</strong><br>
+      Yes, but he looks hurt. He’s bleeding a little.</p>
+
+      <p><strong>Do you have a first aid kit?</strong><br>
+      Yes, in my car. Let me bring it.</p>
+
+      <p><strong>What exactly happened here?</strong><br>
+      The car was speeding and didn’t notice the bike crossing the road.</p>
+
+      <p><strong>Did anyone take a photo or video for proof?</strong><br>
+      Yes, a few people recorded it. The police will need it.</p>
+
+      <p><strong>Here comes the ambulance. Let’s make some space.</strong><br>
+      Yes, everyone please move aside. Give them room to help.</p>
+
+      <p><strong>Can someone inform his family?</strong><br>
+      Yes, I found his phone. I’ll try to call one of his contacts.</p>
+
+      <p><strong>Are the police on their way?</strong><br>
+      Yes, they’ve been informed. They’ll arrive any minute.</p>
+
+      <p><strong>I hope he recovers soon.</strong><br>
+      Yes, me too. That was really scary.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>Where did the accident happen?</strong><br>
+      Just near the traffic signal at MG Road.</p>
+
+      <p><strong>Was anyone seriously injured?</strong><br>
+      One person had a leg injury, but the others are fine.</p>
+
+      <p><strong>Did you witness the accident?</strong><br>
+      Yes, I was right behind the car when it happened.</p>
+
+      <p><strong>Did you report it to the police?</strong><br>
+      Yes, I gave my statement at the police station.</p>
+
+      <p><strong>How long did it take for the ambulance to arrive?</strong><br>
+      It came in about ten minutes.</p>
+
+      <p><strong>Was it a car or bike accident?</strong><br>
+      It was a collision between a car and a motorbike.</p>
+
+      <p><strong>Were there any children involved?</strong><br>
+      No, thankfully only two adults were there.</p>
+
+      <p><strong>How did the driver react after the accident?</strong><br>
+      He looked shocked and immediately tried to help the biker.</p>
+
+      <p><strong>Did anyone record the vehicle number?</strong><br>
+      Yes, a bystander noted it down for the police.</p>
+
+      <p><strong>It’s important to drive carefully and follow traffic rules.</strong><br>
+      Absolutely! Accidents happen in seconds, but safety saves lives.</p>
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+           {
+            title: '6.Website Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Website Conversation</h2>
+  <p>Basic English conversation questions and answers about using websites and the internet.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-globe"></i> Sample Conversation</h3>
+    <p>Learn how to talk about visiting, using, and creating websites in English.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Do you often use websites?</strong><br>
+      Yes, I use websites every day for study, shopping, and entertainment.</p>
+
+      <p><strong>Which website do you visit the most?</strong><br>
+      I visit YouTube and Google the most. I learn many things from them.</p>
+
+      <p><strong>Do you prefer browsing on your phone or computer?</strong><br>
+      I prefer using my phone because it’s easy and portable.</p>
+
+      <p><strong>Have you ever made your own website?</strong><br>
+      Yes, I made a simple personal website for my English learning project.</p>
+
+      <p><strong>What kind of websites do you like?</strong><br>
+      I like educational websites and news sites that help me stay updated.</p>
+
+      <p><strong>Do you read articles online?</strong><br>
+      Yes, I read technology and motivational articles almost every day.</p>
+
+      <p><strong>How do you search for information on a website?</strong><br>
+      I type keywords in the search bar and click on the results I need.</p>
+
+      <p><strong>Do you shop online?</strong><br>
+      Yes, I sometimes buy clothes and books from online shopping websites.</p>
+
+      <p><strong>What’s your favorite shopping website?</strong><br>
+      My favorite is Amazon because it has many options and fast delivery.</p>
+
+      <p><strong>Do you think websites are useful for students?</strong><br>
+      Yes, they help students learn, do research, and improve their knowledge.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>Do you have a school or college website?</strong><br>
+      Yes, my college has a website where we check results and announcements.</p>
+
+      <p><strong>Do you know how to make a website?</strong><br>
+      Yes, I know a little. I can design simple pages using HTML and CSS.</p>
+
+      <p><strong>Do you trust everything you read on websites?</strong><br>
+      Not always. I check the information from reliable sources.</p>
+
+      <p><strong>Have you ever used a website for learning English?</strong><br>
+      Yes, I use websites like BBC Learning English and Duolingo.</p>
+
+      <p><strong>Do you use social media websites?</strong><br>
+      Yes, I use Instagram and Facebook to stay in touch with friends.</p>
+
+      <p><strong>Have you ever bought a course online?</strong><br>
+      Yes, I once joined an online spoken English course through a website.</p>
+
+      <p><strong>Do you think websites are better than apps?</strong><br>
+      Both are good, but I think apps are faster and easier to use.</p>
+
+      <p><strong>What makes a website attractive?</strong><br>
+      Good design, easy navigation, and useful content make a website attractive.</p>
+
+      <p><strong>Have you ever faced a problem on a website?</strong><br>
+      Yes, sometimes websites load slowly or show error messages.</p>
+
+      <p><strong>Would you like to create your own website in the future?</strong><br>
+      Yes, I’d love to create a website to teach English to students.</p>
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+
+ {
+            title: '7.Teacher Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Teacher Conversation</h2>
+  <p>Basic English conversation questions and answers about teachers, school, and classroom interactions.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-chalkboard-teacher"></i> Sample Conversation</h3>
+    <p>Learn how to talk about teachers, ask questions, and discuss classroom activities in English.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Who is your favorite teacher?</strong><br>
+      My favorite teacher is Mrs. Rao. She makes learning fun.</p>
+
+      <p><strong>What subject does she teach?</strong><br>
+      She teaches English and helps me improve my writing skills.</p>
+
+      <p><strong>How long have you been her student?</strong><br>
+      I’ve been her student for two years now.</p>
+
+      <p><strong>What do you like most about your teacher?</strong><br>
+      I like that she explains everything clearly and patiently.</p>
+
+      <p><strong>Does your teacher give a lot of homework?</strong><br>
+      Yes, but it helps me practice and improve my skills.</p>
+
+      <p><strong>How does your teacher punish students who misbehave?</strong><br>
+      She usually warns us first and sometimes asks us to stay after class.</p>
+
+      <p><strong>Does your teacher encourage students to participate in class?</strong><br>
+      Yes! She always asks questions and rewards active students.</p>
+
+      <p><strong>How does your teacher celebrate your achievements?</strong><br>
+      She praises us in front of the class and sometimes gives certificates.</p>
+
+      <p><strong>Does your teacher assign group projects?</strong><br>
+      Yes, and it helps us learn teamwork and cooperation.</p>
+
+      <p><strong>Have you ever asked your teacher for help after class?</strong><br>
+      Yes, whenever I don’t understand something, she explains it patiently.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>What qualities make a teacher good?</strong><br>
+      Patience, knowledge, kindness, and the ability to explain clearly.</p>
+
+      <p><strong>Does your teacher tell stories in class?</strong><br>
+      Yes, she tells stories to make lessons more interesting.</p>
+
+      <p><strong>How do teachers motivate students?</strong><br>
+      By giving rewards, encouragement, and positive feedback.</p>
+
+      <p><strong>Do teachers help you with personal problems?</strong><br>
+      Sometimes, they listen and give advice if needed.</p>
+
+      <p><strong>How does your teacher explain difficult topics?</strong><br>
+      She uses examples, diagrams, and simple language to make it easy to understand.</p>
+
+      <p><strong>Do teachers organize school events?</strong><br>
+      Yes, they plan sports, cultural programs, and competitions.</p>
+
+      <p><strong>Does your teacher give extra classes before exams?</strong><br>
+      Yes, she always conducts revision sessions before exams.</p>
+
+      <p><strong>How do teachers handle naughty students?</strong><br>
+      They talk to them calmly and sometimes involve parents.</p>
+
+      <p><strong>Do you like group discussions in class?</strong><br>
+      Yes, they help us learn from our classmates and improve confidence.</p>
+
+      <p><strong>Would you like to become a teacher in the future?</strong><br>
+      Yes, I want to teach children and help them learn new things.</p>
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+
+           {
+            title: '8.Childhood Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Childhood Memories</h2>
+  <p>Basic English conversation questions and answers about childhood experiences and memories.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-child"></i> Sample Conversation</h3>
+    <p>Learn how to talk about your favorite childhood memories in English.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Do you remember your childhood days?</strong><br>
+      Yes, I do. Those were the happiest days of my life!</p>
+
+      <p><strong>Where did you grow up?</strong><br>
+      I grew up in a small village near the river.</p>
+
+      <p><strong>What kind of child were you?</strong><br>
+      I was very curious and loved exploring everything around me.</p>
+
+      <p><strong>Did you have a best friend when you were little?</strong><br>
+      Yes! My best friend was Ravi. We used to go to school together.</p>
+
+      <p><strong>What games did you like to play as a kid?</strong><br>
+      I loved playing hide and seek, cricket, and hopscotch.</p>
+
+      <p><strong>Did you watch cartoons in your childhood?</strong><br>
+      Of course! Tom and Jerry was my favorite show.</p>
+
+      <p><strong>What did you want to become when you grew up?</strong><br>
+      I wanted to be a pilot. Flying planes fascinated me!</p>
+
+      <p><strong>Did you like going to school?</strong><br>
+      Yes, mostly because I could meet my friends and play during breaks.</p>
+
+      <p><strong>Who was your favorite teacher?</strong><br>
+      My English teacher, Mrs. Rao. She was very kind and encouraging.</p>
+
+      <p><strong>Do you miss your childhood?</strong><br>
+      Yes, every day! Life was simple, joyful, and full of laughter.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>Did you have any pets as a child?</strong><br>
+      Yes, I had a dog named Bruno. He was my best friend.</p>
+
+      <p><strong>What was your favorite toy?</strong><br>
+      My favorite toy was a small red car that I never let anyone touch.</p>
+
+      <p><strong>Did you like reading storybooks?</strong><br>
+      Yes, fairy tales and comic books were my favorites.</p>
+
+      <p><strong>Did you ever get into trouble?</strong><br>
+      Many times! Once I broke my neighbor’s window while playing cricket.</p>
+
+      <p><strong>What is your funniest childhood memory?</strong><br>
+      Once, I wore my shoes on the wrong feet and didn’t realize until lunch break!</p>
+
+      <p><strong>Did you spend your holidays somewhere special?</strong><br>
+      Yes, every summer I visited my grandparents in the village.</p>
+
+      <p><strong>What did you do during summer vacations?</strong><br>
+      We climbed trees, swam in the pond, and ate lots of mangoes.</p>
+
+      <p><strong>Did you collect anything as a child?</strong><br>
+      Yes, I used to collect colorful stamps and coins.</p>
+
+      <p><strong>How did you celebrate your birthdays?</strong><br>
+      My mom baked a cake, and my friends came over to play and eat sweets.</p>
+
+      <p><strong>If you could go back to your childhood, what would you do?</strong><br>
+      I’d spend more time playing outside and less time worrying about anything.</p>
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+
+           {
+            title: '9.Friend Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>A Friend Conversation</h2>
+  <p>Basic English conversation questions and answers about friends and friendship.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-user-friends"></i> Sample Conversation</h3>
+    <p>Learn how to talk about friends, making friends, and sharing experiences in English.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Do you have a best friend?</strong><br>
+      Yes, I have a best friend named Rahul. We have been friends since childhood.</p>
+
+      <p><strong>How did you meet your friend?</strong><br>
+      We met in school during our first grade.</p>
+
+      <p><strong>What do you like most about your friend?</strong><br>
+      He is always honest and supportive.</p>
+
+      <p><strong>Do you spend a lot of time together?</strong><br>
+      Yes, we often study, play, and watch movies together.</p>
+
+      <p><strong>Does your friend have any hobbies?</strong><br>
+      Yes, he likes drawing and playing football.</p>
+
+      <p><strong>Do you share secrets with your friend?</strong><br>
+      Yes, we trust each other and share everything.</p>
+
+      <p><strong>Have you ever had a fight with your friend?</strong><br>
+      Once we had a small argument, but we quickly made up.</p>
+
+      <p><strong>Do you like your friend’s family?</strong><br>
+      Yes, I often visit his house and they treat me like family.</p>
+
+      <p><strong>How do you help each other?</strong><br>
+      We help each other with studies and personal problems.</p>
+
+      <p><strong>Do you and your friend have similar interests?</strong><br>
+      Yes, we both enjoy reading books and playing football.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>Do you talk to your friend every day?</strong><br>
+      Yes, we usually call or message each other daily.</p>
+
+      <p><strong>Do you go on trips with your friend?</strong><br>
+      Yes, we often go on school trips and weekend outings.</p>
+
+      <p><strong>Do you celebrate birthdays together?</strong><br>
+      Yes, we always celebrate each other’s birthdays with small parties.</p>
+
+      <p><strong>Does your friend give good advice?</strong><br>
+      Yes, whenever I have a problem, he always gives helpful advice.</p>
+
+      <p><strong>Do you enjoy talking about hobbies with your friend?</strong><br>
+      Yes, we share our hobbies and learn new things from each other.</p>
+
+      <p><strong>Do you compete in games or sports?</strong><br>
+      Sometimes we compete in football or chess for fun.</p>
+
+      <p><strong>Do you and your friend help others together?</strong><br>
+      Yes, we often participate in community activities or school projects together.</p>
+
+      <p><strong>Do you and your friend have funny memories?</strong><br>
+      Yes, once we accidentally wore the same clothes to school and everyone laughed!</p>
+
+      <p><strong>Do you plan your future together?</strong><br>
+      Yes, we often talk about our goals and dreams.</p>
+
+      <p><strong>Would you like to remain friends forever?</strong><br>
+      Definitely! True friendship is for life.</p>
+
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+           {
+            title: '10.Holiday Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Holiday Conversation</h2>
+  <p>Basic English conversation questions and answers about holidays, trips, and vacation experiences.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-umbrella-beach"></i> Sample Conversation</h3>
+    <p>Learn how to talk about holidays, plans, and favorite vacation activities in English.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Do you like going on holidays?</strong><br>
+      Yes, I love holidays. They are a great way to relax and have fun.</p>
+
+      <p><strong>Where do you usually go for holidays?</strong><br>
+      I usually go to the beach or visit my grandparents in the village.</p>
+
+      <p><strong>Who do you go with?</strong><br>
+      I usually go with my family and sometimes with close friends.</p>
+
+      <p><strong>What is your favorite holiday destination?</strong><br>
+      My favorite is the hill station near my town because it’s peaceful and beautiful.</p>
+
+      <p><strong>Do you prefer summer or winter holidays?</strong><br>
+      I prefer summer holidays because I can enjoy swimming and outdoor games.</p>
+
+      <p><strong>What activities do you do on holidays?</strong><br>
+      I like swimming, sightseeing, playing games, and sometimes reading books.</p>
+
+      <p><strong>Do you plan your holidays in advance?</strong><br>
+      Yes, I like planning to make the most of my free time.</p>
+
+      <p><strong>Do you take pictures during holidays?</strong><br>
+      Yes, I take lots of photos to remember the trip.</p>
+
+      <p><strong>Have you ever been abroad for holidays?</strong><br>
+      No, I haven’t, but I want to visit foreign countries in the future.</p>
+
+      <p><strong>Do you buy souvenirs from your holidays?</strong><br>
+      Yes, I like to buy small gifts for my family and friends.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>Do you enjoy long trips or short trips?</strong><br>
+      I enjoy both, but long trips are more relaxing and fun.</p>
+
+      <p><strong>Do you try local food during holidays?</strong><br>
+      Yes, I love tasting different dishes and snacks.</p>
+
+      <p><strong>Do you prefer mountains or beaches?</strong><br>
+      I prefer beaches because I love swimming and sunbathing.</p>
+
+      <p><strong>Have you ever gone camping?</strong><br>
+      Yes, once we camped near a lake. It was amazing!</p>
+
+      <p><strong>Do you travel by train, bus, or plane?</strong><br>
+      I usually travel by train because it’s comfortable and scenic.</p>
+
+      <p><strong>Do you make new friends while on holidays?</strong><br>
+      Yes, I meet new people and sometimes exchange contacts with them.</p>
+
+      <p><strong>Do you like adventurous holidays?</strong><br>
+      Yes, I enjoy trekking, hiking, and water sports.</p>
+
+      <p><strong>Do you read or watch movies during holidays?</strong><br>
+      Yes, sometimes I read books or watch movies to relax.</p>
+
+      <p><strong>Do you plan your meals during holidays?</strong><br>
+      Sometimes, but I also like trying local restaurants spontaneously.</p>
+
+      <p><strong>Would you like to go on holidays every month?</strong><br>
+      Yes! Holidays are a perfect way to refresh and enjoy life.</p>
+
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+           {
+            title: '11.Fvourite Room Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Favourite Room Conversation</h2>
+  <p>Basic English conversation questions and answers about your favorite room at home and why you like it.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-door-open"></i> Sample Conversation</h3>
+    <p>Learn how to talk about rooms, interior preferences, and comfort in English.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Which is your favorite room in your house?</strong><br>
+      My favorite room is my bedroom because it is cozy and private.</p>
+
+      <p><strong>Why do you like this room?</strong><br>
+      I like it because I can relax, read, and listen to music there.</p>
+
+      <p><strong>Who uses this room the most?</strong><br>
+      I use it the most, but sometimes my younger sister also spends time there.</p>
+
+      <p><strong>What furniture is in your favorite room?</strong><br>
+      It has a bed, study table, chair, and a small bookshelf.</p>
+
+      <p><strong>Do you decorate your room yourself?</strong><br>
+      Yes, I put posters, photos, and some indoor plants.</p>
+
+      <p><strong>Do you like spending time alone in this room?</strong><br>
+      Yes, it’s my personal space where I can think and relax.</p>
+
+      <p><strong>Is your room big or small?</strong><br>
+      It is medium-sized, but very comfortable and well-lit.</p>
+
+      <p><strong>Do you have a study corner in your room?</strong><br>
+      Yes, I have a small desk with my books and a laptop.</p>
+
+      <p><strong>Do you watch TV or play games in this room?</strong><br>
+      Sometimes I watch TV or play games on my laptop here.</p>
+
+      <p><strong>What color is your room?</strong><br>
+      The walls are light blue, which makes the room feel calm and peaceful.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>Do you keep your room clean?</strong><br>
+      Yes, I clean it every day and keep it organized.</p>
+
+      <p><strong>Do you have a favorite chair or sofa in the room?</strong><br>
+      Yes, my recliner chair is very comfortable for reading and resting.</p>
+
+      <p><strong>Do you like natural light in your room?</strong><br>
+      Yes, I love sunlight in the morning. It makes the room bright and fresh.</p>
+
+      <p><strong>Do you spend more time in your room than other rooms?</strong><br>
+      Yes, I spend most of my time here because it’s peaceful and private.</p>
+
+      <p><strong>Do you listen to music in your room?</strong><br>
+      Yes, I listen to music every evening to relax after school.</p>
+
+      <p><strong>Do you have a study lamp or decorations?</strong><br>
+      Yes, I have a study lamp and some posters of my favorite movies.</p>
+
+      <p><strong>Do you like inviting friends to your room?</strong><br>
+      Sometimes, I invite my close friends to hang out and chat.</p>
+
+      <p><strong>Do you have any indoor plants in your room?</strong><br>
+      Yes, I have a few small plants that make the room lively.</p>
+
+      <p><strong>Do you spend time reading in your room?</strong><br>
+      Yes, I often read storybooks and novels here in the evenings.</p>
+
+      <p><strong>Would you like to redesign your favorite room?</strong><br>
+      Yes, I want to paint it a brighter color and add more decorations in the future.</p>
+
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+           {
+            title: '12.Historical Place Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Historical Place Conversation</h2>
+  <p>Basic English conversation questions and answers about visiting and learning about historical places.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-landmark"></i> Sample Conversation</h3>
+    <p>Learn how to talk about historical places, monuments, and cultural heritage in English.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Have you ever visited a historical place?</strong><br>
+      Yes, I visited the Red Fort in Delhi last year.</p>
+
+      <p><strong>Which historical place do you like the most?</strong><br>
+      I like the Taj Mahal the most because it is very beautiful and majestic.</p>
+
+      <p><strong>Who did you go with?</strong><br>
+      I went with my family during the summer holidays.</p>
+
+      <p><strong>What did you learn there?</strong><br>
+      I learned about the history, architecture, and culture of that period.</p>
+
+      <p><strong>Do you like visiting forts, palaces, or museums?</strong><br>
+      I like all of them, but palaces are my favorite because they are grand and elegant.</p>
+
+      <p><strong>Did you take pictures there?</strong><br>
+      Yes, I took many photos to remember the trip.</p>
+
+      <p><strong>What is special about that historical place?</strong><br>
+      The Taj Mahal is special because of its white marble and beautiful design.</p>
+
+      <p><strong>Do you enjoy learning history at school?</strong><br>
+      Yes, especially when we learn about famous monuments and kings.</p>
+
+      <p><strong>Do you like reading about historical events?</strong><br>
+      Yes, it helps me understand the past and our culture better.</p>
+
+      <p><strong>Would you like to visit more historical places?</strong><br>
+      Yes, I want to explore forts, palaces, and ancient temples in India.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>Do you know the history of your city?</strong><br>
+      Yes, I have read about the old forts and temples in my city.</p>
+
+      <p><strong>Do you enjoy guided tours?</strong><br>
+      Yes, guides explain interesting facts and stories about the place.</p>
+
+      <p><strong>Do you prefer visiting historical places or modern places?</strong><br>
+      I prefer historical places because they are educational and inspiring.</p>
+
+      <p><strong>Do you like ancient architecture?</strong><br>
+      Yes, I admire the designs, carvings, and structures of old buildings.</p>
+
+      <p><strong>Have you ever visited a world heritage site?</strong><br>
+      Yes, the Ajanta and Ellora caves are amazing and peaceful.</p>
+
+      <p><strong>Do you like exploring old forts?</strong><br>
+      Yes, walking through forts makes me feel like I am in the past.</p>
+
+      <p><strong>Do you collect souvenirs from historical places?</strong><br>
+      Yes, I like to buy postcards, magnets, and small crafts.</p>
+
+      <p><strong>Do you take notes about historical facts?</strong><br>
+      Sometimes, I write interesting facts in my notebook to remember them.</p>
+
+      <p><strong>Do you like night visits to historical places?</strong><br>
+      Yes, lighted monuments at night look magical and beautiful.</p>
+
+      <p><strong>Would you like to become a historian in the future?</strong><br>
+      Yes, I want to learn more about history and preserve it for future generations.</p>
+
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+           {
+            title: '13.Newspaper Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Newspaper Conversation</h2>
+  <p>Basic English conversation questions and answers about reading newspapers and staying updated with news.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-newspaper"></i> Sample Conversation</h3>
+    <p>Learn how to talk about newspapers, news, and current events in English.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Do you read newspapers regularly?</strong><br>
+      Yes, I read newspapers every morning to stay updated with the news.</p>
+
+      <p><strong>Which newspaper do you read?</strong><br>
+      I usually read The Times of India and The Hindu.</p>
+
+      <p><strong>Do you prefer print newspapers or online news?</strong><br>
+      I prefer online news because it is faster and more convenient.</p>
+
+      <p><strong>What section do you read first?</strong><br>
+      I usually read the national and international news first.</p>
+
+      <p><strong>Do you like reading sports news?</strong><br>
+      Yes, I love reading about cricket and football matches.</p>
+
+      <p><strong>Do you discuss news with your friends or family?</strong><br>
+      Yes, we often talk about interesting events and current issues.</p>
+
+      <p><strong>Do you read editorials and opinions?</strong><br>
+      Yes, editorials help me understand different perspectives on important topics.</p>
+
+      <p><strong>Do you watch news on TV as well?</strong><br>
+      Sometimes, but I prefer reading because I can take notes easily.</p>
+
+      <p><strong>Do you like reading local news?</strong><br>
+      Yes, local news helps me stay informed about my city or town.</p>
+
+      <p><strong>Why is reading newspapers important?</strong><br>
+      It helps us stay informed, improve knowledge, and develop opinions.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>Do you read newspapers in English or another language?</strong><br>
+      I read newspapers in English to improve my language skills.</p>
+
+      <p><strong>Do you like reading articles on science and technology?</strong><br>
+      Yes, I enjoy learning about new discoveries and inventions.</p>
+
+      <p><strong>Do you read entertainment news?</strong><br>
+      Sometimes, especially about movies and celebrities.</p>
+
+      <p><strong>Do you like solving crosswords or puzzles in newspapers?</strong><br>
+      Yes, it’s fun and also improves my thinking skills.</p>
+
+      <p><strong>Do you prefer daily or weekly newspapers?</strong><br>
+      I prefer daily newspapers to get the latest updates.</p>
+
+      <p><strong>Do you read financial or business news?</strong><br>
+      Yes, it helps me understand the economy and business trends.</p>
+
+      <p><strong>Do you subscribe to a newspaper?</strong><br>
+      Yes, my family has a subscription for both print and online editions.</p>
+
+      <p><strong>Have you ever written a letter to the editor?</strong><br>
+      No, but I sometimes comment on online news articles.</p>
+
+      <p><strong>Do you share interesting news with friends?</strong><br>
+      Yes, I often share important or funny news on WhatsApp or social media.</p>
+
+      <p><strong>Would you like to work for a newspaper in the future?</strong><br>
+      Yes, I am interested in journalism and reporting news professionally.</p>
+
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+           {
+            title: '14.Favourite Subject Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Favourite Subject Conversation</h2>
+  <p>Basic English conversation questions and answers about school subjects and learning preferences.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-book"></i> Sample Conversation</h3>
+    <p>Learn how to talk about your favorite subject, teachers, and study habits in English.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>What is your favorite subject at school?</strong><br>
+      My favorite subject is Mathematics because I love solving problems.</p>
+
+      <p><strong>Who teaches your favorite subject?</strong><br>
+      Our math teacher, Mr. Sharma, teaches it. He explains very clearly.</p>
+
+      <p><strong>Why do you like this subject?</strong><br>
+      I like it because it challenges me and makes me think logically.</p>
+
+      <p><strong>Do you find any subject difficult?</strong><br>
+      Yes, I find History a bit difficult because I have to memorize many dates.</p>
+
+      <p><strong>Do you enjoy practical subjects?</strong><br>
+      Yes, I like Science experiments because they are interesting and fun.</p>
+
+      <p><strong>Do you study your favorite subject every day?</strong><br>
+      Yes, I practice math daily to improve my skills.</p>
+
+      <p><strong>Do you like group activities in your favorite subject?</strong><br>
+      Sometimes, especially when we solve problems or do projects together.</p>
+
+      <p><strong>Do you get good marks in your favorite subject?</strong><br>
+      Yes, I usually score high marks in Math exams.</p>
+
+      <p><strong>Do you ask your teacher for extra help?</strong><br>
+      Yes, if I don’t understand a topic, I ask Mr. Sharma for guidance.</p>
+
+      <p><strong>Do you use any online resources for your favorite subject?</strong><br>
+      Yes, I use educational websites and videos to practice more problems.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>Do you have another favorite subject?</strong><br>
+      Yes, I also like English because I enjoy reading stories and poems.</p>
+
+      <p><strong>Do you like subjects with practical activities?</strong><br>
+      Yes, I enjoy subjects like Science and Art that include hands-on activities.</p>
+
+      <p><strong>Do you have a favorite teacher for each subject?</strong><br>
+      Yes, I like all my teachers, but some are more inspiring than others.</p>
+
+      <p><strong>Do you help your friends in your favorite subject?</strong><br>
+      Yes, I often help classmates who find Math difficult.</p>
+
+      <p><strong>Do you prefer theory or practical classes?</strong><br>
+      I prefer a mix of both. Theory helps me understand, and practical makes it fun.</p>
+
+      <p><strong>Do you enjoy homework in your favorite subject?</strong><br>
+      Yes, homework gives me extra practice and improves my skills.</p>
+
+      <p><strong>Do you participate in competitions for your favorite subject?</strong><br>
+      Yes, I take part in Math quizzes and Olympiads.</p>
+
+      <p><strong>Do you plan to study this subject in higher classes?</strong><br>
+      Yes, I want to pursue higher studies in Mathematics.</p>
+
+      <p><strong>Do you read books related to your favorite subject?</strong><br>
+      Yes, I read extra books and guides to learn more.</p>
+
+      <p><strong>Would you like to become a teacher in your favorite subject?</strong><br>
+      Yes, I would love to teach Math and help students enjoy it as much as I do.</p>
+
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+           {
+            title: '15.Hotel Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Hotel Conversation</h2>
+  <p>Basic English conversation questions and answers about staying at a hotel and related experiences.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-hotel"></i> Sample Conversation</h3>
+    <p>Learn how to talk about booking, staying, and services in a hotel in English.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Have you ever stayed in a hotel?</strong><br>
+      Yes, I have stayed in a hotel during our family vacation.</p>
+
+      <p><strong>Which hotel did you stay in?</strong><br>
+      We stayed at the Grand Palace Hotel near the city center.</p>
+
+      <p><strong>Did you book the hotel in advance?</strong><br>
+      Yes, we booked it online before our trip.</p>
+
+      <p><strong>Do you prefer luxury or budget hotels?</strong><br>
+      I prefer budget hotels because they are comfortable and affordable.</p>
+
+      <p><strong>Who did you stay with?</strong><br>
+      I stayed with my family and younger sister.</p>
+
+      <p><strong>What facilities did the hotel provide?</strong><br>
+      The hotel had a restaurant, swimming pool, and free Wi-Fi.</p>
+
+      <p><strong>Did you enjoy your stay?</strong><br>
+      Yes, it was very comfortable and the staff were helpful.</p>
+
+      <p><strong>Did the hotel have a good view?</strong><br>
+      Yes, our room had a view of the city and the garden.</p>
+
+      <p><strong>Did you eat at the hotel restaurant?</strong><br>
+      Yes, we tried the local cuisine and it was delicious.</p>
+
+      <p><strong>Would you stay in the same hotel again?</strong><br>
+      Yes, definitely! It was a very pleasant experience.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>Do you prefer staying in a single room or sharing a room?</strong><br>
+      I prefer sharing with family members because it’s fun and economical.</p>
+
+      <p><strong>Did you use any hotel services like room service?</strong><br>
+      Yes, we ordered breakfast to our room a few times.</p>
+
+      <p><strong>Did the hotel have a good location?</strong><br>
+      Yes, it was near the tourist spots and easy to reach by bus.</p>
+
+      <p><strong>Do you like hotels with swimming pools?</strong><br>
+      Yes, swimming is one of my favorite activities during vacations.</p>
+
+      <p><strong>Did you meet new people at the hotel?</strong><br>
+      Yes, we met travelers from different cities and shared our experiences.</p>
+
+      <p><strong>Do you prefer hotels with restaurants or outside food?</strong><br>
+      I prefer hotels with restaurants for convenience and variety.</p>
+
+      <p><strong>Do you like hotels with Wi-Fi and other technology?</strong><br>
+      Yes, free Wi-Fi helps me stay connected and plan trips easily.</p>
+
+      <p><strong>Did you take photos of the hotel?</strong><br>
+      Yes, I took photos of the rooms and garden for memories.</p>
+
+      <p><strong>Did the hotel provide good hospitality?</strong><br>
+      Yes, the staff were friendly and always ready to help.</p>
+
+      <p><strong>Would you recommend this hotel to friends?</strong><br>
+      Yes, I would recommend it for comfort, location, and service.</p>
+
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+           {
+            title: '16.Letter Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Letter Conversation</h2>
+  <p>Basic English conversation questions and answers about writing and receiving letters.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-envelope"></i> Sample Conversation</h3>
+    <p>Learn how to talk about letters, writing styles, and communication in English.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Do you write letters often?</strong><br>
+      Yes, I write letters to my grandparents and close friends.</p>
+
+      <p><strong>Who do you write letters to?</strong><br>
+      I usually write letters to my friends, cousins, and teachers.</p>
+
+      <p><strong>Do you prefer handwritten or typed letters?</strong><br>
+      I prefer handwritten letters because they feel personal and warm.</p>
+
+      <p><strong>Have you ever received a letter from a friend?</strong><br>
+      Yes, I often receive letters from my friends on special occasions.</p>
+
+      <p><strong>Do you like receiving letters?</strong><br>
+      Yes, it feels special to receive a handwritten letter in the post.</p>
+
+      <p><strong>Do you include drawings or photos in letters?</strong><br>
+      Sometimes, I draw small pictures or include photos to make the letter interesting.</p>
+
+      <p><strong>Do you write formal or informal letters?</strong><br>
+      I write both. Informal letters are for friends, formal letters for teachers or officials.</p>
+
+      <p><strong>Do you write letters in English?</strong><br>
+      Yes, mostly in English, but sometimes in my native language too.</p>
+
+      <p><strong>Do you write letters during holidays?</strong><br>
+      Yes, especially during festivals or summer vacation to share experiences.</p>
+
+      <p><strong>Do you enjoy writing letters?</strong><br>
+      Yes, it is fun and helps me express my thoughts clearly.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>Do you reply to letters quickly?</strong><br>
+      Yes, I try to reply as soon as I receive a letter.</p>
+
+      <p><strong>Do you know the format of a formal letter?</strong><br>
+      Yes, I follow the correct format including sender’s address, date, and salutation.</p>
+
+      <p><strong>Do you write letters for school assignments?</strong><br>
+      Yes, teachers often ask us to write letters as part of our English lessons.</p>
+
+      <p><strong>Do you include your experiences in letters?</strong><br>
+      Yes, I like sharing my daily experiences and stories with friends and family.</p>
+
+      <p><strong>Do you like sending greeting cards?</strong><br>
+      Yes, I send greeting cards along with letters during birthdays and festivals.</p>
+
+      <p><strong>Do you use envelopes or just fold the paper?</strong><br>
+      I usually use envelopes to keep the letters safe and neat.</p>
+
+      <p><strong>Do you write letters to people in other countries?</strong><br>
+      Sometimes, I write letters to pen pals or relatives living abroad.</p>
+
+      <p><strong>Do you practice good handwriting in letters?</strong><br>
+      Yes, I try to write neatly so the reader can easily understand it.</p>
+
+      <p><strong>Do you like adding quotes or poems in letters?</strong><br>
+      Yes, I sometimes include quotes or short poems to make it more interesting.</p>
+
+      <p><strong>Would you like to continue writing letters in the future?</strong><br>
+      Yes, letters are a special way of communication that I want to continue.</p>
+
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+           {
+            title: '17.Hobbies Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Hobbies Conversation</h2>
+  <p>Basic English conversation questions and answers about hobbies, free-time activities, and interests.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-paint-brush"></i> Sample Conversation</h3>
+    <p>Learn how to talk about hobbies, favorite activities, and how you spend your leisure time in English.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Do you have any hobbies?</strong><br>
+      Yes, I have several hobbies like reading, painting, and playing football.</p>
+
+      <p><strong>What is your favorite hobby?</strong><br>
+      My favorite hobby is reading because I enjoy learning new things.</p>
+
+      <p><strong>How often do you spend time on your hobbies?</strong><br>
+      I spend at least one hour every day on my hobbies.</p>
+
+      <p><strong>Did you start your hobby recently?</strong><br>
+      No, I have been painting since I was a child.</p>
+
+      <p><strong>Do you share your hobbies with friends?</strong><br>
+      Yes, sometimes I play football or draw with my friends.</p>
+
+      <p><strong>Do your hobbies help you relax?</strong><br>
+      Yes, hobbies help me forget stress and enjoy my free time.</p>
+
+      <p><strong>Do you have outdoor hobbies or indoor hobbies?</strong><br>
+      I have both. Football is outdoors, while reading and painting are indoors.</p>
+
+      <p><strong>Do you spend more time on your favorite hobby?</strong><br>
+      Yes, I spend most of my free time reading books.</p>
+
+      <p><strong>Do your parents support your hobbies?</strong><br>
+      Yes, they encourage me and sometimes buy materials for my hobbies.</p>
+
+      <p><strong>Do you like trying new hobbies?</strong><br>
+      Yes, I like learning new skills like photography or cooking.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>Do you have hobbies that help you stay fit?</strong><br>
+      Yes, I play football and go jogging to stay healthy.</p>
+
+      <p><strong>Do you like creative hobbies?</strong><br>
+      Yes, I love drawing, painting, and writing stories.</p>
+
+      <p><strong>Do you spend time on hobbies on weekends?</strong><br>
+      Yes, weekends are perfect for spending longer time on my hobbies.</p>
+
+      <p><strong>Do you have group hobbies?</strong><br>
+      Yes, I play football with my friends every Saturday.</p>
+
+      <p><strong>Do you have any quiet hobbies?</strong><br>
+      Yes, reading and sketching are quiet and peaceful hobbies.</p>
+
+      <p><strong>Do you have hobbies related to technology?</strong><br>
+      Yes, I enjoy learning basic coding and using apps to create digital art.</p>
+
+      <p><strong>Do you participate in hobby competitions?</strong><br>
+      Yes, I have joined art and football competitions at school.</p>
+
+      <p><strong>Do your hobbies help you learn new skills?</strong><br>
+      Yes, each hobby teaches me patience, creativity, or teamwork.</p>
+
+      <p><strong>Do you teach your hobbies to others?</strong><br>
+      Yes, I sometimes teach my younger siblings to draw and play football.</p>
+
+      <p><strong>Would you like to develop a new hobby in the future?</strong><br>
+      Yes, I want to learn photography and gardening as new hobbies.</p>
+
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+           {
+            title: '18.Shopping Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Shopping Conversation</h2>
+  <p>Basic English conversation questions and answers about shopping for clothes, groceries, and other items.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-shopping-cart"></i> Sample Conversation</h3>
+    <p>Learn how to talk about shopping, prices, and preferences in English.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Do you like shopping?</strong><br>
+      Yes, I enjoy shopping, especially for clothes and accessories.</p>
+
+      <p><strong>Where do you usually go shopping?</strong><br>
+      I usually go to the local market or shopping malls in the city.</p>
+
+      <p><strong>Do you shop online?</strong><br>
+      Yes, sometimes I buy clothes and books online.</p>
+
+      <p><strong>Do you prefer shopping alone or with friends?</strong><br>
+      I prefer shopping with friends because it’s fun and they give advice.</p>
+
+      <p><strong>Do you check prices before buying?</strong><br>
+      Yes, I always compare prices to get the best deal.</p>
+
+      <p><strong>Do you like buying branded products?</strong><br>
+      Sometimes, but I mostly buy good quality products at a reasonable price.</p>
+
+      <p><strong>Do you enjoy grocery shopping?</strong><br>
+      Yes, I go with my parents and learn about different food items.</p>
+
+      <p><strong>Do you use shopping lists?</strong><br>
+      Yes, it helps me remember what to buy and saves time.</p>
+
+      <p><strong>Do you like sales and discounts?</strong><br>
+      Yes, I always try to buy items when there is a discount or sale.</p>
+
+      <p><strong>Do you try new products while shopping?</strong><br>
+      Yes, I like trying new foods, clothes, and gadgets sometimes.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>Do you enjoy shopping for gifts?</strong><br>
+      Yes, I like buying gifts for friends and family during birthdays and festivals.</p>
+
+      <p><strong>Do you like window shopping?</strong><br>
+      Yes, it’s fun to see new products even if I don’t buy them.</p>
+
+      <p><strong>Do you bargain in markets?</strong><br>
+      Yes, I try to bargain to get a better price.</p>
+
+      <p><strong>Do you check the quality of items before buying?</strong><br>
+      Yes, I always check fabric, packaging, and expiry dates for quality.</p>
+
+      <p><strong>Do you prefer small shops or big malls?</strong><br>
+      I prefer big malls because they have more variety and better facilities.</p>
+
+      <p><strong>Do you enjoy shopping during festivals?</strong><br>
+      Yes, shops are decorated and there are many discounts during festivals.</p>
+
+      <p><strong>Do you return items if they are not good?</strong><br>
+      Yes, I always check the return policy before buying and return if necessary.</p>
+
+      <p><strong>Do you use online payment or cash?</strong><br>
+      I use both, but mostly online payment for convenience.</p>
+
+      <p><strong>Do you shop for yourself or for your family?</strong><br>
+      I shop for both myself and my family members.</p>
+
+      <p><strong>Would you like to open your own shop in the future?</strong><br>
+      Yes, I would like to open a small clothing store or online shop someday.</p>
+
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+           {
+            title: '19.Music Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Music Conversation</h2>
+  <p>Basic English conversation questions and answers about music, musical instruments, and listening habits.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-music"></i> Sample Conversation</h3>
+    <p>Learn how to talk about music preferences, singing, and instruments in English.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Do you like music?</strong><br>
+      Yes, I love listening to music every day.</p>
+
+      <p><strong>What kind of music do you like?</strong><br>
+      I like pop and classical music the most.</p>
+
+      <p><strong>Do you have a favorite singer or band?</strong><br>
+      Yes, my favorite singer is Arijit Singh.</p>
+
+      <p><strong>Do you play any musical instruments?</strong><br>
+      Yes, I play the guitar and sometimes the piano.</p>
+
+      <p><strong>Do you listen to music while studying?</strong><br>
+      Sometimes, I listen to soft music while reading or writing.</p>
+
+      <p><strong>Do you like singing?</strong><br>
+      Yes, I enjoy singing in my free time and during school events.</p>
+
+      <p><strong>Do you attend live music concerts?</strong><br>
+      Yes, I went to a concert last year and it was amazing.</p>
+
+      <p><strong>Do you like music from other countries?</strong><br>
+      Yes, I enjoy listening to English and Korean songs.</p>
+
+      <p><strong>Do you create your own music?</strong><br>
+      Sometimes, I compose small tunes on my guitar.</p>
+
+      <p><strong>Do you use apps to listen to music?</strong><br>
+      Yes, I use Spotify and YouTube to listen to my favorite songs.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>Do you like instrumental music?</strong><br>
+      Yes, instrumental music is very relaxing and helps me concentrate.</p>
+
+      <p><strong>Do you prefer music with lyrics or without lyrics?</strong><br>
+      I prefer music with lyrics because I enjoy singing along.</p>
+
+      <p><strong>Do you like classical music?</strong><br>
+      Yes, it’s very soothing and beautiful.</p>
+
+      <p><strong>Do you watch music videos?</strong><br>
+      Yes, I watch music videos on YouTube to enjoy the visuals along with songs.</p>
+
+      <p><strong>Do you attend music classes?</strong><br>
+      Yes, I take guitar lessons once a week.</p>
+
+      <p><strong>Do you like dancing to music?</strong><br>
+      Yes, I enjoy dancing to energetic songs with my friends.</p>
+
+      <p><strong>Do you share your favorite songs with friends?</strong><br>
+      Yes, we often share playlists and recommend songs to each other.</p>
+
+      <p><strong>Do you like attending school music programs?</strong><br>
+      Yes, I participate in singing competitions and music shows at school.</p>
+
+      <p><strong>Do you play music while traveling?</strong><br>
+      Yes, listening to music makes traveling more enjoyable and fun.</p>
+
+      <p><strong>Would you like to learn more musical instruments?</strong><br>
+      Yes, I want to learn the drums and keyboard in the future.</p>
+
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+           {
+            title: '20.Daily Conversations',
+            content: `
+            <div class="lesson-section">
+  <h2>Animals Conversation</h2>
+  <p>Basic English conversation questions and answers about animals, pets, and wildlife.</p>
+
+  <div class="example-box">
+    <h3><i class="fas fa-paw"></i> Sample Conversation</h3>
+    <p>Learn how to talk about animals, pets, and nature in English.</p>
+    <div class="example-content">
+      <h4>Conversation:</h4>
+
+      <p><strong>Do you like animals?</strong><br>
+      Yes, I love animals and enjoy spending time with them.</p>
+
+      <p><strong>Do you have a pet?</strong><br>
+      Yes, I have a dog named Bruno and a cat named Lily.</p>
+
+      <p><strong>What kind of pet do you like the most?</strong><br>
+      I like dogs the most because they are friendly and loyal.</p>
+
+      <p><strong>Do you take care of your pets yourself?</strong><br>
+      Yes, I feed them, bathe them, and take them for walks.</p>
+
+      <p><strong>Do you like wild animals?</strong><br>
+      Yes, I enjoy watching wildlife documentaries and visiting zoos.</p>
+
+      <p><strong>Have you ever visited a zoo?</strong><br>
+      Yes, I often visit the zoo to see animals like lions, tigers, and elephants.</p>
+
+      <p><strong>Do you like farm animals?</strong><br>
+      Yes, I enjoy seeing cows, goats, and chickens on farms.</p>
+
+      <p><strong>Do you know how to take care of pets?</strong><br>
+      Yes, I know basic care like feeding, cleaning, and regular checkups.</p>
+
+      <p><strong>Do you prefer small or big pets?</strong><br>
+      I like both, but I prefer dogs and cats as pets at home.</p>
+
+      <p><strong>Do you enjoy reading about animals?</strong><br>
+      Yes, I read books and articles about animals and their habitats.</p>
+
+      <hr>
+
+      <h4>Additional Conversations:</h4>
+
+      <p><strong>Do you like birds?</strong><br>
+      Yes, I enjoy watching colorful birds in my garden and park.</p>
+
+      <p><strong>Do you know any exotic animals?</strong><br>
+      Yes, I know about kangaroos, pandas, and koalas.</p>
+
+      <p><strong>Do you like marine animals?</strong><br>
+      Yes, I enjoy learning about dolphins, whales, and turtles.</p>
+
+      <p><strong>Do you feed stray animals?</strong><br>
+      Yes, I sometimes give food to stray dogs and cats in my neighborhood.</p>
+
+      <p><strong>Do you like watching animal documentaries?</strong><br>
+      Yes, they teach me about nature and different species.</p>
+
+      <p><strong>Do you know your favorite animal?</strong><br>
+      Yes, my favorite animal is the tiger because it is strong and beautiful.</p>
+
+      <p><strong>Do you like visiting aquariums?</strong><br>
+      Yes, I enjoy seeing fish and marine life up close in aquariums.</p>
+
+      <p><strong>Do you enjoy sketching or drawing animals?</strong><br>
+      Yes, I like drawing animals in my free time.</p>
+
+      <p><strong>Do you know how animals communicate?</strong><br>
+      Yes, many animals use sounds, gestures, and body language to communicate.</p>
+
+      <p><strong>Would you like to work with animals in the future?</strong><br>
+      Yes, I would love to become a veterinarian or wildlife researcher.</p>
+
+    </div>
+  </div>
+</div>
+<div style="width:100%; height:500px; border:1px solid #ccc;">
+  What you Learn , Record that as audio !!!
+    <iframe src="audio.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+            `
+          },
+
+          
+
+           {
             title: 'Cloze Test',
             content: `
               <div class="lesson-section">
@@ -15597,7 +18157,6 @@ Questions:
               </div>
             `
           },
-
           {
             title: 'Para Jumbles',
             content: `
@@ -15748,11 +18307,11 @@ Questions:
       let menuHTML = '';
       
       // Add regular classes (1-10)
-      for (let i = 1; i <= 10; i++) {
+      for (let i = 1; i <= 15; i++) {
         menuHTML += `
           <li class="class-item" data-class="${i}">
             <a href="#" data-class="${i}">
-              <i class="fas fa-${classData[i]?.icon || 'graduation-cap'}"></i> Class ${i}
+              <i class="fas fa-${classData[i]?.icon || 'graduation-cap'}"></i> Level ${i}
             </a>
             <ul class="topic-menu">
               ${classData[i]?.topics.map((topic, index) => `
@@ -16034,6 +18593,41 @@ signupForm.addEventListener('submit', (e) => {
         };
 
         
+
+        function checkAnswer(button, isCorrect) {
+    const questionBox = button.parentElement;
+    const buttons = questionBox.querySelectorAll("button");
+    
+    // Disable all buttons for this question
+    buttons.forEach(btn => btn.disabled = true);
+    
+    if (isCorrect) {
+      button.classList.add("correct");
+    } else {
+      button.classList.add("wrong");
+      // Highlight the correct answer
+      buttons.forEach(btn => {
+        if (btn.getAttribute("onclick").includes("true")) {
+          btn.classList.add("correct");
+        }
+      });
+    }
+  }
+
+   // ✅ Load current count from localStorage
+  let count = localStorage.getItem('visitCount');
+
+  if (count === null) {
+    count = 1; // first time visitor
+  } else {
+    count = parseInt(count) + 1;
+  }
+
+  // ✅ Save updated count
+  localStorage.setItem('visitCount', count);
+
+  // ✅ Show count on page
+  document.getElementById("visitCount").innerText = count;
   </script>
 </body>
 </html>
