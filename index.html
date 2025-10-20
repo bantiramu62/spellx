@@ -1466,14 +1466,13 @@ p {
 .question-box { margin-bottom: 35px; }
 
 
-/* 🧾 Only styles the counter box (won’t touch body) */
+ /* 🎨 Visitor Counter Box Styles */
   #visitorCounter {
     position: fixed;
     bottom: 20px;
     right: 20px;
     background: #ffffffcc;
-    backdrop-filter: blur(5px);
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     font-family: 'Poppins', sans-serif;
@@ -1486,26 +1485,27 @@ p {
   #visitorCounter h3 {
     margin: 0;
     font-size: 1rem;
-    color: #222;
+    color: #333;
   }
 
   #visitCount {
-    font-size: 1.5rem;
-    color: #007bff;
+    font-size: 1.4rem;
     font-weight: bold;
+    color: #007bff;
   }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-<!-- 🧮 Live Visitor Counter Widget -->
+<!-- 🌍 Global Visitor Counter -->
 <div id="visitorCounter">
-  <h3>👁️ Visitors:</h3>
-  <span id="visitCount">0</span>
+  <h3>👁️ Website Visits:</h3>
+  <span id="visitCount">Loading...</span>
 </div>
 
 
+  
   <!-- Navbar -->
   <div class="navbar">
     Welcome to SpellX - English Learning Platform
@@ -18613,21 +18613,18 @@ signupForm.addEventListener('submit', (e) => {
       });
     }
   }
+  // Use a unique ID for your project
+  const counterUrl = "https://api.countapi.xyz/update/spellx_englishgrammar/visits/?amount=1";
 
-   // ✅ Load current count from localStorage
-  let count = localStorage.getItem('visitCount');
-
-  if (count === null) {
-    count = 1; // first time visitor
-  } else {
-    count = parseInt(count) + 1;
-  }
-
-  // ✅ Save updated count
-  localStorage.setItem('visitCount', count);
-
-  // ✅ Show count on page
-  document.getElementById("visitCount").innerText = count;
+  fetch(counterUrl)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('visitCount').innerText = data.value;
+    })
+    .catch(err => {
+      document.getElementById('visitCount').innerText = "Error";
+      console.error("Counter Error:", err);
+    });
   </script>
 </body>
 </html>
