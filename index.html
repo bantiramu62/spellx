@@ -1498,7 +1498,7 @@ p {
 </head>
 <body>
 
-<!-- 🌍 Global Visitor Counter -->
+<!-- 🌍 Global Visitor Counter for SpellX -->
 <div id="visitorCounter">
   <h3>👁️ Website Visits:</h3>
   <span id="visitCount">Loading...</span>
@@ -18613,16 +18613,15 @@ signupForm.addEventListener('submit', (e) => {
       });
     }
   }
-  // Use a unique ID for your project
-  const counterUrl = "https://api.countapi.xyz/update/spellx_englishgrammar/visits/?amount=1";
 
-  fetch(counterUrl)
+  // Fetch and increment visitor count from CountAPI
+  fetch("https://api.countapi.xyz/update/spellx_englishgrammar/visits/?amount=1")
     .then(res => res.json())
     .then(data => {
-      document.getElementById('visitCount').innerText = data.value;
+      document.getElementById("visitCount").innerText = data.value;
     })
     .catch(err => {
-      document.getElementById('visitCount').innerText = "Error";
+      document.getElementById("visitCount").innerText = "Error";
       console.error("Counter Error:", err);
     });
   </script>
