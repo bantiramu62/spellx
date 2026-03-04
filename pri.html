@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Priyam - Where Celebrations Meet Surprises</title>
+
+<style>
+
+  
+
+.womensday-section {
+  padding: 60px 5%;
+}
+
+.container {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+}
+
+/* LEFT SIDE */
+.left-content {
+  flex: 1;
+}
+
+.big-image {
+  width: 100%;
+  border-radius: 20px;
+  display: block;
+}
+
+.text-box {
+  margin-top: 20px;
+}
+
+.text-box h1 {
+  font-size: 42px;
+  color: #6b3fa0;
+  margin: 0;
+}
+
+.text-box p {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.text-box span {
+  font-style: italic;
+  color: #6b3fa0;
+}
+
+/* RIGHT SIDE */
+.right-cards {
+  flex: 1.2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 16px;
+}
+.wrapper {
+  padding: 5x 5px;
+  padding-left: 80px;
+  background: white;
+}
+
+.category-row {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.category-row::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  min-width: 100px;
+  height: 140px;
+  padding: 18px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.04);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+.card img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+}
+
+.card span {
+  font-size: 10px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Special Luxe Card */
+.card.luxe {
+  background: #000;
+  justify-content: center;
+}
+
+.card.luxe span {
+  color: #d4af37;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+/* ===============================
+   RESET & BASE STYLES
+================================ */
+
+/* ===============================
+   CATEGORY BAR
+================================ */
+/* ===============================
+   PROFESSIONAL SLIDER
+================================ */
+
+.promo-section{
+    position:fixed;
+    padding:50px 80px;
+    background:white;
+}
+/* ===============================
+   PROMO SECTION BORDER LINES
+================================ */
+
+.promo-section{
+    position:relative;
+    padding:50px 80px;
+    background:white;
+    border-top:1px solid #dbd3d3;
+    
+}
+
+.slider-wrapper{
+    overflow:hidden;
+}
+
+.slider-track{
+    display:flex;
+    gap:30px;
+    transition:transform 0.6s ease-in-out;
+}
+
+.slide-card{
+    min-width:420px;
+    height:260px;
+    border-radius:20px;
+    overflow:hidden;
+    flex-shrink:0;
+    cursor:pointer;
+    transition:0.4s;
+}
+
+.slide-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.5s;
+}
+
+.slide-card:hover img{
+    transform:scale(1.05);
+}
+
+
+/* Colors */
+
+.pink{ background:linear-gradient(135deg,#ff3cac,#d63384); }
+.purple{ background:linear-gradient(135deg,#8e2de2,#4a00e0); }
+.peach{ background:linear-gradient(135deg,#ff9966,#ff5e62); }
+.blue{ background:linear-gradient(135deg,#2193b0,#6dd5ed); }
+.yellow{ background:linear-gradient(135deg,#f7971e,#ffd200); }
+.green{ background:linear-gradient(135deg,#11998e,#38ef7d); }
+
+/* Arrow Buttons */
+
+.nav-btn{
+    position:absolute;
+    top:25%;
+    transform:translateY(-50%);
+    background:white;
+    border:none;
+    width:45px;
+    height:45px;
+    border-radius:20%;
+    font-size:22px;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    z-index:5;
+    
+}
+
+.prev{ left:40px; }
+.next{ right:40px; }
+
+.category-bar{
+    display:flex;
+    gap:40px;
+    padding:15px 80px;
+    background:white;
+    font-weight:500;
+    overflow-x:auto;
+    white-space:nowrap;
+}
+
+.category-item{
+    cursor:pointer;
+    color:#333;
+    transition:0.3s;
+}
+
+.category-item:hover{
+    color:#d63384;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,white,white);
+    overflow-x:hidden;
+}
+
+/* ===============================
+   NAVBAR
+================================ */
+
+header{
+    width:100%;
+    padding:20px 80px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:relative;
+    z-index:10;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:600;
+    color:#d63384;
+    font-family:cursive;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:40px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:#333;
+    font-weight:500;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#d63384;
+}
+
+.book-btn{
+    padding:10px 25px;
+    background:#f06292;
+    border:none;
+    border-radius:25px;
+    color:#fff;
+    font-weight:500;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.book-btn:hover{
+    background:#d63384;
+}
+
+/* ===============================
+   HERO SECTION
+================================ */
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 80px;
+    position:relative;
+}
+
+.hero-left{
+    max-width:600px;
+}
+
+.hero-left h1{
+    font-size:48px;
+    line-height:1.2;
+    color:#333;
+    margin-bottom:20px;
+}
+
+.hero-left h1 span{
+    color:#f06292;
+}
+
+.hero-left p{
+    font-size:16px;
+    color:#555;
+    margin-bottom:30px;
+    line-height:1.6;
+}
+
+/* Buttons */
+
+.hero-buttons{
+    display:flex;
+    gap:20px;
+}
+
+.primary-btn{
+    padding:12px 30px;
+    border-radius:30px;
+    border:none;
+    background:#f06292;
+    color:white;
+    font-weight:500;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.primary-btn:hover{
+    background:#d63384;
+}
+
+.secondary-btn{
+    padding:12px 30px;
+    border-radius:30px;
+    border:1px solid #f06292;
+    background:white;
+    color:#f06292;
+    font-weight:500;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.secondary-btn:hover{
+    background:#fce4ec;
+}
+
+/* ===============================
+   RIGHT SIDE CARD
+================================ */
+
+.hero-right{
+    position:relative;
+    width:450px;
+    height:450px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.circle-bg{
+    width:380px;
+    height:380px;
+    background:radial-gradient(circle,#ffd6e8,#f8bbd0);
+    border-radius:50%;
+    position:absolute;
+    animation:float 6s ease-in-out infinite;
+}
+
+/* Celebration Card */
+
+.celebration-card{
+    width:250px;
+    padding:25px;
+    background:white;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    position:relative;
+    text-align:center;
+    z-index:2;
+    animation:floatCard 4s ease-in-out infinite;
+}
+
+.celebration-card h2{
+    font-size:28px;
+    color:#d63384;
+}
+
+.celebration-card p{
+    font-size:14px;
+    margin-top:5px;
+    color:#555;
+}
+
+/* Balloons */
+
+.balloon{
+    width:40px;
+    height:50px;
+    border-radius:50%;
+    position:absolute;
+    animation:balloonFloat 5s infinite ease-in-out;
+}
+
+.balloon1{
+    background:#ff8fab;
+    top:-30px;
+    left:60px;
+}
+
+.balloon2{
+    background:#cdb4db;
+    top:-40px;
+    left:120px;
+}
+
+.balloon3{
+    background:#a2d2ff;
+    top:-20px;
+    left:170px;
+}
+
+/* ===============================
+   ANIMATIONS
+================================ */
+
+@keyframes float{
+    0%{ transform:translateY(0px); }
+    50%{ transform:translateY(-15px); }
+    100%{ transform:translateY(0px); }
+}
+
+@keyframes floatCard{
+    0%{ transform:translateY(0px); }
+    50%{ transform:translateY(-10px); }
+    100%{ transform:translateY(0px); }
+}
+
+@keyframes balloonFloat{
+    0%{ transform:translateY(0px); }
+    50%{ transform:translateY(-20px); }
+    100%{ transform:translateY(0px); }
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+================================ */
+
+@media(max-width:1000px){
+
+    header{
+        padding:20px 40px;
+    }
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        padding:40px;
+    }
+
+    .hero-right{
+        margin-top:40px;
+    }
+
+    nav ul{
+        display:none;
+    }
+}
+
+/* ===============================
+   EXTRA CONFETTI EFFECT
+================================ */
+
+.confetti{
+    position:absolute;
+    width:8px;
+    height:8px;
+    background:#ff8fab;
+    top:-10px;
+    animation:confettiFall linear infinite;
+}
+
+@keyframes confettiFall{
+    0%{
+        transform:translateY(-10px) rotate(0deg);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(100vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===============================
+     NAVBAR
+================================ -->
+
+<header>
+    <div class="logo">Priyam</div>
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+
+    <button class="book-btn">Book Now</button>
+</header>
+
+<!-- ===============================
+     HERO SECTION
+================================ -->
+
+<!-- ===============================
+     CATEGORY BAR
+================================ -->
+
+<section class="category-bar">
+    <div class="category-item">Women's Day ▾</div>
+    <div class="category-item">Birthday ▾</div>
+    <div class="category-item">Occasions ▾</div>
+   
+    <div class="category-item">Flowers ▾</div>
+    <div class="category-item">Cakes ▾</div>
+  
+    <div class="category-item">Plants ▾</div>
+    <div class="category-item">Balloon Decor ▾</div>
+    <div class="category-item">Chocolates ▾</div>
+    
+</section>
+
+<!-- ===============================
+     PROMO SLIDER
+================================ -->
+
+<!-- ===============================
+     PROFESSIONAL PROMO SLIDER
+================================ -->
+
+<section class="promo-section">
+
+    <button class="nav-btn prev">&#10094;</button>
+    <button class="nav-btn next">&#10095;</button>
+
+    <div class="slider-wrapper">
+       <div class="slider-track">
+
+    <div class="slide-card">
+        <img src="holi.webp" alt="Holi Banner">
+    </div>
+
+    <div class="slide-card">
+        <img src="bday.webp" alt="Women's Day Banner">
+    </div>
+
+    <div class="slide-card">
+        <img src="fresh.webp" alt="Birthday Banner">
+    </div>
+
+    <div class="slide-card">
+        <img src="fashion.webp" alt="Anniversary Banner">
+    </div>
+
+    <div class="slide-card">
+        <img src="images/luxury.jpg" alt="Luxury Hampers Banner">
+    </div>
+
+    <div class="slide-card">
+        <img src="images/custom.jpg" alt="Custom Surprise Banner">
+    </div>
+
+</div>
+    </div>
+
+</section>
+
+<div class="wrapper">
+  <div class="category-row">
+
+    <div class="card">
+      <img src="sameday.png" alt="">
+      <span>Get Same Day</span>
+    </div>
+
+    <div class="card">
+      <img src="balloon.png" alt="">
+      <span>Holi</span>
+    </div>
+
+    <div class="card">
+      <img src="birthday.png" alt="">
+      <span>Women's Day</span>
+    </div>
+
+    <div class="card">
+      <img src="cakes.png" alt="">
+      <span>Birthday</span>
+    </div>
+
+  
+
+    <div class="card">
+      <img src="flowers.png" alt="">
+      <span>Flowers</span>
+    </div>
+
+    <div class="card">
+      <img src="luxe.png" alt="">
+      <span>Anniversary</span>
+    </div>
+
+    <div class="card">
+      <img src="holi2.png" alt="">
+      <span>Cakes</span>
+    </div>
+
+    <div class="card">
+      <img src="luxe.png" alt="">
+      <span>Balloon Decor</span>
+    </div>
+
+  </div>
+</div>
+
+<section class="womensday-section">
+
+  <div class="container">
+
+    <!-- LEFT SIDE -->
+    <div class="left-content">
+      <img src="sec3/women.webp" alt="Women's Day" class="big-image">
+
+     
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right-cards">
+
+      <div class="card">
+        <img src="sec3/hampers.webp" alt="">
+        <h3>Hampers</h3>
+      </div>
+
+      <div class="card">
+        <img src="sec3/flowerss.webp" alt="">
+        <h3>Flowers</h3>
+      </div>
+
+      <div class="card">
+        <img src="sec3/cakes.webp" alt="">
+        <h3>Cakes</h3>
+      </div>
+
+      <div class="card">
+        <img src="sec3/choco.webp" alt="">
+        <h3>Chocolates</h3>
+      </div>
+
+      <div class="card">
+        <img src="sec3/personal.webp" alt="">
+        <h3>Personalised</h3>
+      </div>
+
+      <div class="card">
+        <img src="sec3/mother.webp" alt="">
+        <h3>For Mother</h3>
+      </div>
+
+      <div class="card">
+        <img src="sec3/her.webp" alt="">
+        <h3>For Her</h3>
+      </div>
+
+      <div class="card">
+        <img src="sec3/him.webp" alt="">
+        <h3>For Him</h3>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- ===============================
+     JAVASCRIPT
+================================ -->
+
+<script>
+
+/* ===============================
+   CONFETTI GENERATOR
+================================ */
+
+function createConfetti(){
+
+    const confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+
+    confetti.style.left = Math.random()*100 + "vw";
+    confetti.style.background = randomColor();
+    confetti.style.animationDuration = (Math.random()*3+2) + "s";
+
+    document.body.appendChild(confetti);
+
+    setTimeout(()=>{
+        confetti.remove();
+    },5000);
+}
+
+function randomColor(){
+    const colors = ["#ff8fab","#cdb4db","#a2d2ff","#ffc8dd","#bde0fe"];
+    return colors[Math.floor(Math.random()*colors.length)];
+}
+
+setInterval(createConfetti,300);
+
+/* ===============================
+   BUTTON CLICK EFFECT
+================================ */
+
+document.querySelector(".primary-btn").addEventListener("click",()=>{
+    alert("Booking feature coming soon!");
+});
+
+document.querySelector(".secondary-btn").addEventListener("click",()=>{
+    alert("Services page coming soon!");
+});
+
+
+/* ===============================
+   PROFESSIONAL SLIDER LOGIC
+================================ */
+
+const track = document.querySelector(".slider-track");
+const slides = document.querySelectorAll(".slide-card");
+const nextBtn = document.querySelector(".next");
+const prevBtn = document.querySelector(".prev");
+
+let index = 0;
+let slideWidth = slides[0].offsetWidth + 30; // width + gap
+
+function moveSlide(){
+    track.style.transform = `translateX(-${index * slideWidth}px)`;
+}
+
+nextBtn.addEventListener("click", ()=>{
+    if(index < slides.length - 3){
+        index++;
+    }else{
+        index = 0;
+    }
+    moveSlide();
+});
+
+prevBtn.addEventListener("click", ()=>{
+    if(index > 0){
+        index--;
+    }else{
+        index = slides.length - 3;
+    }
+    moveSlide();
+});
+
+/* Auto Slide */
+
+let autoSlide = setInterval(()=>{
+    nextBtn.click();
+},3000);
+
+/* Pause on Hover */
+
+document.querySelector(".promo-section").addEventListener("mouseenter",()=>{
+    clearInterval(autoSlide);
+});
+
+document.querySelector(".promo-section").addEventListener("mouseleave",()=>{
+    autoSlide = setInterval(()=>{
+        nextBtn.click();
+    },3000);
+});
+
+</script>
+
+</body>
