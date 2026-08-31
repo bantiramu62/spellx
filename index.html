@@ -6,9 +6,9 @@
   <meta name="description" content="Comprehensive English learning platform with classes from beginner to advanced levels">
   <title>EnglishPro - Complete English Learning</title>
   <style>
+.question-card{ max-width:850px; margin:auto; padding:25px; background:#fff; border-radius:12px; font-family:Poppins,sans-serif; box-shadow:0 4px 15px rgba(0,0,0,.1); } .option{ display:flex; align-items:center; gap:15px; margin:20px 0; cursor:pointer; padding:12px; border-radius:10px; transition:.3s; } .option:hover{ background:#f5f7ff; } .circle{ width:45px; height:45px; border:2px solid #65b32e; border-radius:50%; display:flex; justify-content:center; align-items:center; font-weight:bold; font-size:22px; } .correct{ background:#eafbea; } .correct .circle{ background:#2ecc71; color:white; border-color:#2ecc71; } .wrong{ background:#ffecec; } .wrong .circle{ background:#e74c3c; color:white; border-color:#e74c3c; } .explanation{ margin-top:25px; padding:20px; background:#f8f9ff; border-left:5px solid #2b4eff; border-radius:10px; }
 
-
-
+.error-question{ max-width:900px; margin:auto; font-family:Poppins,sans-serif; } .option-row{ display:flex; align-items:center; gap:15px; margin:18px 0; padding:12px; border-radius:12px; cursor:pointer; transition:.3s; } .option-row:hover{ background:#f5f7ff; } .option-circle{ width:50px; height:50px; border:2px solid #67b728; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:22px; font-weight:bold; } .correct{ background:#e8fff0; } .correct .option-circle{ background:#2ecc71; color:white; border-color:#2ecc71; } .wrong{ background:#ffeaea; } .wrong .option-circle{ background:#e74c3c; color:white; border-color:#e74c3c; } #explanationBox{ margin-top:25px; padding:20px; border-left:5px solid #2b4eff; background:#f7f9ff; border-radius:10px; }
 * {
       margin: 0;
       padding: 0;
@@ -17171,6 +17171,13 @@ Questions:
 </div>
             `
           }, 
+{
+            title: '1.Family Conversation',
+            content: `
+<div class="error-question"> <h3>Find the Error</h3> <div class="option-row" data-option="A"> <div class="option-circle">A</div> <div class="option-text"> We discussed about the problem so thoroughly </div> </div> <div class="option-row" data-option="B"> <div class="option-circle">B</div> <div class="option-text"> on the eve of the examination </div> </div> <div class="option-row" data-option="C"> <div class="option-circle">C</div> <div class="option-text"> that I found it very easy to work it out </div> </div> <div class="option-row" data-option="D"> <div class="option-circle">D</div> <div class="option-text"> No Error </div> </div> <div id="explanationBox" style="display:none;"></div> </div>
+             `
+          }, 
+          
           {
             title: '1.Family Conversation',
             content: `
@@ -19397,7 +19404,7 @@ signupForm.addEventListener('submit', (e) => {
     }
   }
 
-  
+  setTimeout(()=>{ const correctAnswer = "A"; let answered = false; document.querySelectorAll(".option-row").forEach(row=>{ row.addEventListener("click",function(){ if(answered) return; answered = true; const selected = this.dataset.option; if(selected === correctAnswer){ this.classList.add("correct"); } else{ this.classList.add("wrong"); document.querySelectorAll(".option-row").forEach(r=>{ if(r.dataset.option === correctAnswer){ r.classList.add("correct"); } }); } const explanationBox = document.getElementById("explanationBox"); explanationBox.style.display = "block"; explanationBox.innerHTML = ` <h3>Explanation</h3> <p><b>Correct Answer:</b> A</p> <p><b>Error:</b> discussed about</p> <p><b>Rule:</b> The verb <b>discuss</b> is transitive and does not require the preposition <b>about</b>.</p> <p><b>Wrong:</b> We discussed about the problem.</p> <p><b>Correct:</b> We discussed the problem.</p> `; }); }); },500);
   </script>
 </body>
 </html>
